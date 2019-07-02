@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.StudentHomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/student_home_cardView"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.35"
+                    android:textSize="16sp"
+                    android:text="Room ID:"
+                    fontPath="fonts/bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_weight="0.65"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_student_home_tvRoomId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.35"
+                    android:textSize="16sp"
+                    android:text="Landlord Name:"
+                    fontPath="fonts/bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_weight="0.65"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_student_home_tvLandlordName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.35"
+                    android:textSize="16sp"
+                    android:text="Start Date:"
+                    fontPath="fonts/bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_weight="0.65"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_student_home_tvStartDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.35"
+                    android:textSize="16sp"
+                    android:text="End Date:"
+                    fontPath="fonts/bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_weight="0.65"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_student_home_tvEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.35"
+                    android:textSize="16sp"
+                    android:text="Next Due Date:"
+                    fontPath="fonts/bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_weight="0.65"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_student_home_tvNextDueDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.35"
+                    android:textSize="16sp"
+                    android:text="Status:"
+                    fontPath="fonts/bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_weight="0.65"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_student_home_tvStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="0.35"
+                    android:textSize="16sp"
+                    android:text="Monthly Rental:"
+                    fontPath="fonts/bold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_weight="0.65"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_student_home_tvMonthlyRental"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/student_home_reportFault"
+        android:background="@drawable/bottom_view_solid_border"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:src="@drawable/leak"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:text="Report Fault"
+            android:layout_gravity="center_vertical"
+            android:textSize="28sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_right_more"
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:background="@drawable/bottom_view_solid_border"
+        android:id="@+id/student_home_payRental"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/payment"
+            android:layout_margin="10dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:text="Pay Rental"
+            android:layout_gravity="center_vertical"
+            android:textSize="28sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_right_more"
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:background="@drawable/bottom_view_solid_border"
+        android:id="@+id/student_home_chat"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/chat"
+            android:layout_margin="10dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:text="Chat with Landlord"
+            android:layout_gravity="center_vertical"
+            android:textSize="28sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_right_more"
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="150dp"
+        android:id="@+id/student_home_textView"
+        android:text="You are not renting any space yet. Tap Search button to look for place"
+        android:layout_width="300dp"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/student_home_btnSearch"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:text="Search For Room"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

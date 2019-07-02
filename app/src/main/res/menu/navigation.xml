@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_my_properties"
+        android:icon="@drawable/icon_property"
+        android:title="@string/my_properties" />
+
+    <item
+        android:id="@+id/navigation_my_rooms"
+        android:icon="@drawable/icon_room"
+        android:title="@string/my_rooms" />
+
+    <item
+        android:id="@+id/navigation_my_tenants"
+        android:icon="@drawable/icon_tenant"
+        android:title="@string/my_tenants" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/icon_settings"
+        android:title="@string/settings_label" />
+
+</menu>

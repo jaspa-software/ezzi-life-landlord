@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_image"
+    android:id="@+id/authentication_rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuthenticationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/authentication_tvHelloThere"
+            android:text="@string/hello_there"
+            android:textColor="#075E54"
+            android:textSize="32sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@id/authentication_tvHelloThere"
+            android:text="@string/welcome_home"
+            android:textColor="#075E54"
+            android:textSize="36sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/authentication_layoutSocialMedia"
+            android:orientation="horizontal"
+            android:layout_above="@id/authentication_tvOr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="@string/google"
+                android:background="@drawable/google_btn"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:onClick="signInWithWithGoogle"
+                android:layout_margin="15dp"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:text="@string/facebook"
+                android:background="@drawable/facebook_btn"
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_margin="15dp"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/authentication_tvOr"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorPrimary"
+            android:text="--- OR ---"
+            fontPath="fonts/bold.ttf"
+            android:layout_above="@id/authentication_btnSignInWithMobileNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix" />
+
+        <Button
+            android:id="@+id/authentication_btnSignInWithMobileNumber"
+            android:text="Sign In Using Mobile Number"
+            android:background="@drawable/round_button_shape"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:layout_margin="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MyPropertiesFragment">
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/my_properties_imageView"
+        android:src="@drawable/property"
+        android:layout_marginTop="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_below="@id/my_properties_imageView"
+        android:id="@+id/my_properties_textView"
+        android:textSize="28sp"
+        fontPath="fonts/bold.ttf"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingPrefix" />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_below="@id/my_properties_textView"
+        android:id="@+id/my_properties_textView2"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingPrefix" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/my_properties_btnListMyProperty"
+        android:layout_marginTop="60dp"
+        android:background="@color/colorAccent"
+        android:textColor="#fff"
+        android:text="@string/list_my_property"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/my_properties_textView2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/my_properties_progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:layout_margin="15dp"
+        android:id="@+id/my_properties_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/my_properties_fabAddProperty"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/icon_property"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

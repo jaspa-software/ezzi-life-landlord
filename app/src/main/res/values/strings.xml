@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">EzziLyf</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="hello_there">Hello there</string>
+    <string name="welcome_home">Welcome home</string>
+    <string name="my_properties">My Properties</string>
+    <string name="my_rooms">My Rooms</string>
+    <string name="my_tenants">My Tenants</string>
+    <string name="my_profile">My Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="tell_us_about_your_property">Tell us about your property!</string>
+    <string name="property_type">Property Type</string>
+    <string name="property_location">Property Location</string>
+    <string name="type_your_property_address">Type your property address</string>
+    <string name="i_have_right_of_posting_this_property">I have right of posting this property</string>
+    <string name="house">House</string>
+    <string name="apartment">Apartment</string>
+    <string name="hostels">Hostels</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="property_features">Property Features</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="wifi">Wifi</string>
+    <string name="lounge">Lounge</string>
+    <string name="study_area">Study Area</string>
+    <string name="default_number">0</string>
+    <string name="you_are_a_step_to_post_your_property">You are a step to post your property</string>
+    <string name="looks_great">Looks great!</string>
+    <string name="list_my_property">List My Property</string>
+    <string name="submit">Submit</string>
+    <string name="next_evaluation_date">NEXT EVALUATION DATE</string>
+    <string name="features_and_amenities">Features and Amenities</string>
+    <string name="description">Description</string>
+    <string name="room_id">Room ID</string>
+    <string name="room_photos">Room Photos</string>
+    <string name="settings_label">Settings</string>
+    <string name="change_account_type_close_account">Change account type, close account</string>
+    <string name="account">Account</string>
+    <string name="privacy_policy_terms_of_use_disclaimer_contact_us">Privacy Policy, Terms of Use, Disclaimer, Contact Us</string>
+    <string name="sign_in_label">Sign In</string>
+    <string name="already_an_account_sign_in_below">Already an account. Sign In below</string>
+    <string name="list_my_place">List My Place</string>
+    <string name="search_for_place">Search For Place</string>
+    <string name="welcome_to_ezzylyf">Welcome to EzzyLyf</string>
+</resources>

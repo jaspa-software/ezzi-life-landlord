@@ -1,0 +1,196 @@
+{
+  "project_info": {
+    "project_number": "428772232509",
+    "firebase_url": "https://resfinder-mvp.firebaseio.com",
+    "project_id": "resfinder-mvp",
+    "storage_bucket": "resfinder-mvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428772232509:android:3dea229b2c243c5e",
+        "android_client_info": {
+          "package_name": "com.ulwembubs.resfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428772232509-dgq6vkll4ib3ouq74jaloqf1i1nnnpim.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ulwembubs.resfinder",
+            "certificate_hash": "05e4de3efcc13e74f205f4a1f8a3fbca2568c1c9"
+          }
+        },
+        {
+          "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCifYHm0FdB0f1KiAczdbDYU81FsgAo5sY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428772232509:android:567dafe6fb7fde18",
+        "android_client_info": {
+          "package_name": "za.co.ezzilyf.partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428772232509-m2vdnfel9e4lr930vtunh7k18on33o0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.ezzilyf.partner",
+            "certificate_hash": "b2a4cae20fa6e999d02eea3aa85f764f17a4ddfa"
+          }
+        },
+        {
+          "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCifYHm0FdB0f1KiAczdbDYU81FsgAo5sY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428772232509:android:e48c1b99289ddc42",
+        "android_client_info": {
+          "package_name": "za.co.jaspa.resfinderadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428772232509-n4gpoaeel6ge22cfeefdc5niomm4le6k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.jaspa.resfinderadmin",
+            "certificate_hash": "05e4de3efcc13e74f205f4a1f8a3fbca2568c1c9"
+          }
+        },
+        {
+          "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCifYHm0FdB0f1KiAczdbDYU81FsgAo5sY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428772232509:android:3397911b5fc74fee",
+        "android_client_info": {
+          "package_name": "za.co.resfinder.resfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428772232509-vponbkmgorr9vdmsh4c6q7dsr2nn0lus.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.resfinder.resfinder",
+            "certificate_hash": "05e4de3efcc13e74f205f4a1f8a3fbca2568c1c9"
+          }
+        },
+        {
+          "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCifYHm0FdB0f1KiAczdbDYU81FsgAo5sY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428772232509:android:c076ada2f8cb38c1",
+        "android_client_info": {
+          "package_name": "za.co.resfinder.resfinderpartner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428772232509-uacrtqqe175k3cqq5bonl9ufaqrf63hp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.resfinder.resfinderpartner",
+            "certificate_hash": "05e4de3efcc13e74f205f4a1f8a3fbca2568c1c9"
+          }
+        },
+        {
+          "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCifYHm0FdB0f1KiAczdbDYU81FsgAo5sY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428772232509-v2oe2v6pvc77h482gapobbs79cr5456n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
