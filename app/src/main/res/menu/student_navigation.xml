@@ -3,15 +3,15 @@
     <item
         android:id="@+id/student_navigation_notices"
         android:icon="@drawable/icon_property"
-        android:title="@string/my_properties" />
+        android:title="Home" />
 
     <item
         android:id="@+id/student_navigation_home"
-        android:icon="@drawable/icon_room"
-        android:title="@string/my_rooms" />
+        android:icon="@drawable/icon_notices"
+        android:title="Notices" />
 
     <item
         android:id="@+id/student_navigation_account"
         android:icon="@drawable/icon_tenant"
-        android:title="@string/my_tenants" />
+        android:title="Account" />
 </menu>

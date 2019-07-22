@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Property implements Serializable {
 
+    private String propertyName;
+
     private String propertyId;
 
     private String propertyType;
@@ -35,6 +37,10 @@ public class Property implements Serializable {
     private String photoTwoUrl;
 
     private String photoThreeUrl;
+
+    private double lat;
+
+    private double lng;
 
     public Property() {
 
@@ -167,5 +173,29 @@ public class Property implements Serializable {
 
     public void setPhotoThreeUrl(String photoThreeUrl) {
         this.photoThreeUrl = photoThreeUrl;
+    }
+
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }

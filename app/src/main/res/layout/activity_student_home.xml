@@ -14,18 +14,18 @@
         android:layout_height="wrap_content"/>
 
     <FrameLayout
-        android:id="@+id/main_frame_container"
+        android:id="@+id/student_frame_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_bottom_navigation"
+        android:id="@+id/student_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/student_navigation" />
 
 </LinearLayout>

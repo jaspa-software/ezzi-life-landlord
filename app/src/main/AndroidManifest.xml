@@ -15,11 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.StudentHomeActivity"></activity>
+        <activity android:name=".activities.HelpActivity"></activity>
+        <activity android:name=".activities.StudentHomeActivity" />
         <activity android:name=".activities.WelcomeActivity" />
         <activity android:name=".activities.AddRoomActivity" />
-        <activity android:name=".activities.PropertyDetailsActivity" />
-        <activity android:name=".activities.ListPropertyActivity" />
+        <activity
+            android:name=".activities.PropertyDetailsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activities.ListPropertyActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".AuthenticationActivity" />
         <activity
             android:name=".SplashScreenActivity"

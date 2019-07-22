@@ -35,10 +35,12 @@ public class MyRoomsAdapter  extends RecyclerView.Adapter<MyRoomsAdapter.MyViewH
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
 
-        myViewHolder.roomId.setText(roomList.get(position).getRoomId() +
+        myViewHolder.roomId.setText(roomList.get(position).getRoomName() +
                 " - " + roomList.get(position).getTypeOfOccupants());
 
         myViewHolder.status.setText(roomList.get(position).getRoomStatus());
+
+        myViewHolder.propertyName.setText(roomList.get(position).getPropertyName());
 
     }
 
@@ -49,7 +51,7 @@ public class MyRoomsAdapter  extends RecyclerView.Adapter<MyRoomsAdapter.MyViewH
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView roomId, status;
+        TextView roomId, propertyName, status;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +59,8 @@ public class MyRoomsAdapter  extends RecyclerView.Adapter<MyRoomsAdapter.MyViewH
             roomId = itemView.findViewById(R.id.list_room_roomId);
 
             status = itemView.findViewById(R.id.list_room_roomStatus);
+
+            propertyName = itemView.findViewById(R.id.list_room_propertyName);
 
         }
     }

@@ -1,5 +1,6 @@
 package za.co.ezzilyf.partner.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import za.co.ezzilyf.partner.R;
+import za.co.ezzilyf.partner.activities.HelpActivity;
 
 
 public class SettingsFragment extends Fragment {
@@ -63,7 +65,9 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "Functionality not implemented yet", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), HelpActivity.class);
+
+                startActivity(intent);
 
             }
         });

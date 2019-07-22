@@ -30,6 +30,10 @@ public class Room implements Serializable {
 
     private String roomLocation;
 
+    private String roomName;
+
+    private String propertyName;
+
     public Room() {
 
     }
@@ -137,5 +141,21 @@ public class Room implements Serializable {
 
     public void setRoomLocation(String roomLocation) {
         this.roomLocation = roomLocation;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
     }
 }

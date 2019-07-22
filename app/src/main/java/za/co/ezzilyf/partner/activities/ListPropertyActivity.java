@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.Manifest;
@@ -62,7 +63,7 @@ public class ListPropertyActivity extends AppCompatActivity {
 
     private boolean isPropertyTypeSelected = false;
 
-    private EditText etPropertyDescription, etBedrooms, etBathrooms, etToilets;
+    private EditText etPropertyName, etPropertyDescription, etBedrooms, etBathrooms, etToilets;
 
     private CheckBox cbStudyArea, cbLounge, cbKitchen, cbWifi;
 
@@ -104,6 +105,8 @@ public class ListPropertyActivity extends AppCompatActivity {
 
     private Uri mImageUri;
 
+    private double lat, lng;
+
     @Override
     protected void attachBaseContext(Context newBase) {
 
@@ -117,6 +120,14 @@ public class ListPropertyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_list_property);
+
+        Toolbar toolbar = findViewById(R.id.list_property_toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("List your Property");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mStorageReference = FirebaseStorage.getInstance().getReference("properties");
 
@@ -167,6 +178,8 @@ public class ListPropertyActivity extends AppCompatActivity {
         etPropertyDescription = findViewById(R.id.list_property_etPropertySummary);
 
         initGooglePlaces();
+
+        etPropertyName = findViewById(R.id.list_property_etPropertyName);
 
         etPropertyLocation = findViewById(R.id.list_property_etPropertyLocation);
 
@@ -414,6 +427,8 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         property.setPropertyListerUid(currentUserId);
 
+        property.setPropertyName(etPropertyName.getText().toString().trim());
+
         property.setPropertyDescription(etPropertyDescription.getText().toString().trim());
 
         property.setPropertyLocation(etPropertyLocation.getText().toString().trim());
@@ -440,7 +455,11 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         property.setPhotoThreeUrl(strImageUrlThree);
 
-        property.setListingStatus("Pending For Approval");
+        property.setListingStatus("Pending for Approval");
+
+        property.setLat(lat);
+
+        property.setLng(lng);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -492,7 +511,7 @@ public class ListPropertyActivity extends AppCompatActivity {
             }
 
         }else{
-            // device less then mashmallow
+            // device less then marshmallow
 
             pickImageFromGallery();
 
@@ -596,6 +615,19 @@ public class ListPropertyActivity extends AppCompatActivity {
 //                break;
 
             case 2:
+
+                if (TextUtils.isEmpty(etPropertyName.getText())) {
+
+                    etPropertyName.setError("Field cannot be empty!");
+
+                    etPropertyName.requestFocus();
+
+                    currentLayout--;
+
+                    return;
+
+                }
+
 
                 if (TextUtils.isEmpty(etPropertyDescription.getText())) {
 
@@ -777,9 +809,9 @@ public class ListPropertyActivity extends AppCompatActivity {
 
                 if (place != null){
                    // mLocation = place.getAddress();
-                   // mLatitude = place.getLatLng().latitude;
-                   // mLongitude = place.getLatLng().longitude;
-                    etPropertyLocation.setText(place.getAddress());
+                   lat = place.getLatLng().latitude;
+                   lng = place.getLatLng().longitude;
+                   etPropertyLocation.setText(place.getAddress());
                 }
 
             }

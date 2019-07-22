@@ -203,7 +203,7 @@
         </LinearLayout>
 
         <TextView
-            android:text="Comments/Feeback"
+            android:text="Comments/Feedback"
             fontPath="fonts/bold.ttf"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"

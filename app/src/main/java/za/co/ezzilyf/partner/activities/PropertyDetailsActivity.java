@@ -109,6 +109,12 @@ public class PropertyDetailsActivity extends AppCompatActivity {
 
         tvStatus.setText(property.getListingStatus());
 
+        if (TextUtils.equals(strListingStatus,"Pending for Approval")) {
+
+            tvStatus.setBackgroundResource(R.color.colorPending);
+
+        }
+
         tvLounge.setText(property.getIsLoungeAvailable());
 
         tvKitchen.setText(property.getIsKitchenAvailable());
@@ -123,12 +129,12 @@ public class PropertyDetailsActivity extends AppCompatActivity {
 
         etAddress.setText(property.getPropertyLocation());
 
-        if (TextUtils.equals(strListingStatus,"Pending For Approval")) {
+        if (TextUtils.equals(strListingStatus,"Pending for Approval")) {
 
-            // TODO uncomment this
-            //  btnAddRoom.setVisibility(View.GONE);
+            btnAddRoom.setVisibility(View.GONE);
 
-            tvComments.setText("Waiting for approval");
+            // tvComments.setText("Pending for Approval");
+            //tvComments.setBackgroundResource(R.color.colorPending);
 
             tvEvaluationDate.setText("N/A");
         }

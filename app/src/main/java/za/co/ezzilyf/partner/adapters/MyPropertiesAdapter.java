@@ -65,6 +65,8 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             myViewHolder.status.setBackgroundResource(R.color.colorFeedback);
         }
 
+        myViewHolder.name.setText(propertyList.get(position).getPropertyName());
+
         myViewHolder.location.setText(propertyList.get(position).getPropertyLocation());
 
         myViewHolder.status.setText(propertyList.get(position).getListingStatus());
@@ -92,7 +94,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView location, status;
+        TextView name,location, status;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -100,6 +102,8 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             location = itemView.findViewById(R.id.list_my_property_tvLocation);
 
             status = itemView.findViewById(R.id.list_my_property_tvStatus);
+
+            name = itemView.findViewById(R.id.list_my_property_tvName);
 
         }
     }

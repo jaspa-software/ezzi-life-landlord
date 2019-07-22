@@ -70,7 +70,40 @@ public class StudentHomeFragment extends Fragment {
 
         initViews();
 
+        setListeners();
+
         displayRoomDetails();
+    }
+
+    private void setListeners() {
+
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(), "Integrating with BRAINTREE in progress... :-(", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(), "Reporting function under development :-)", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(), "Chat function under development :-)", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     private void initViews() {

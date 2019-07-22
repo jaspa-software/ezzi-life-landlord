@@ -11,14 +11,18 @@ import android.view.ViewGroup;
 
 import za.co.ezzilyf.partner.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StudentAccountFragment extends Fragment {
 
 
     public StudentAccountFragment() {
         // Required empty public constructor
+    }
+
+    public static StudentAccountFragment getInstance(){
+
+        StudentAccountFragment fragment = new StudentAccountFragment();
+
+        return  fragment;
     }
 
 

@@ -21,6 +21,13 @@ public class StudentNoticesFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static StudentNoticesFragment getInstance(){
+
+        StudentNoticesFragment fragment = new StudentNoticesFragment();
+
+        return  fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
