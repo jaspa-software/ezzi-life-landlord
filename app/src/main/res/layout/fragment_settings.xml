@@ -14,8 +14,8 @@
         <ImageView
             android:layout_margin="15dp"
             android:src="@drawable/defaultpic"
-            android:layout_width="60dp"
-            android:layout_height="60dp" />
+            android:layout_width="110dp"
+            android:layout_height="110dp" />
 
         <TextView
             android:text="Conference Ndlovu"
@@ -91,5 +91,15 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/settings_btnSignOut"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff"
+        android:background="@drawable/round_button_shape"
+        android:text="Sign Out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

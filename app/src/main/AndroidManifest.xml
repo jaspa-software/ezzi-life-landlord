@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -15,17 +16,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.HelpActivity"></activity>
+        <activity android:name=".activities.RoomDetailsActivity"></activity>
+        <activity android:name=".activities.HelpActivity" />
         <activity android:name=".activities.StudentHomeActivity" />
         <activity android:name=".activities.WelcomeActivity" />
         <activity android:name=".activities.AddRoomActivity" />
         <activity
             android:name=".activities.PropertyDetailsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activities.ListPropertyActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".AuthenticationActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashTheme">

@@ -11,9 +11,16 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:background="#f6f6f6"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/default_image_property"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
 
         <TextView
             android:id="@+id/list_my_property_tvName"
@@ -21,7 +28,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:textAllCaps="true"
-            android:textSize="18sp"
+            android:textSize="22sp"
             fontPath="fonts/bold.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +40,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
+            android:drawableLeft="@drawable/icon_address"
+            android:drawablePadding="10dp"
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

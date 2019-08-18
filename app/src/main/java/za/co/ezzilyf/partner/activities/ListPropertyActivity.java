@@ -27,6 +27,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -150,6 +153,7 @@ public class ListPropertyActivity extends AppCompatActivity {
         initViews();
 
         setListeners();
+
     }
 
     private void initViews() {
@@ -418,7 +422,9 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         progressDialog.show();
 
-        String listingId = "EL" + Calendar.getInstance().getTimeInMillis();
+        String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
+
+        String listingId = "EL" + timestamp.substring(timestamp.length() - 6);
 
         final Property property = new Property();
 
@@ -544,12 +550,21 @@ public class ListPropertyActivity extends AppCompatActivity {
 
     private void pickImageFromGallery() {
 
-        // intent to pick image
-        Intent intent  =   new Intent(Intent.ACTION_PICK);
+//        // intent to pick image
+//        Intent intent  =   new Intent(Intent.ACTION_PICK);
+//
+//        intent.setType("image/*");
+//
+//        startActivityForResult(intent, RC_IMAGE_PICKER);
 
-        intent.setType("image/*");
+        // start picker to get image for cropping and then use the image in cropping activity
+        CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(4,3)
+                .setMinCropResultSize(600,400)
+                .start(this);
 
-        startActivityForResult(intent, RC_IMAGE_PICKER);
+
     }
 
     @Override
@@ -557,39 +572,54 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK && requestCode == RC_IMAGE_PICKER) {
 
-            switch (selectedImage) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
-                case 1:
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
-                    ivPhoto1.setImageURI(data.getData());
+            if (resultCode == RESULT_OK) {
 
-                    mImageUri = data.getData();
+                Uri resultUri = result.getUri();
 
-                    uploadImageToFirebaseOne();
+                switch (selectedImage) {
 
-                    break;
+                    case 1:
 
-                case 2:
+                        ivPhoto1.setImageURI(resultUri);
 
-                    ivPhoto2.setImageURI(data.getData());
+                        mImageUri = resultUri;
 
-                    mImageUri = data.getData();
+                        uploadImageToFirebaseOne();
 
-                    uploadImageToFirebaseTwo();
+                        break;
 
-                    break;
+                    case 2:
 
-                case 3:
+                        ivPhoto2.setImageURI(resultUri);
 
-                    ivPhoto3.setImageURI(data.getData());
+                        mImageUri = resultUri;
 
-                    mImageUri = data.getData();
+                        uploadImageToFirebaseTwo();
 
-                    uploadImageToFirebaseThree();
+                        break;
 
-                    break;
+                    case 3:
+
+                        ivPhoto3.setImageURI(resultUri);
+
+                        mImageUri = resultUri;
+
+                        uploadImageToFirebaseThree();
+
+                        break;
+                }
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+
+                Exception error = result.getError();
+
+                Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
 
         }
@@ -844,6 +874,14 @@ public class ListPropertyActivity extends AppCompatActivity {
 
     private void uploadImageToFirebaseOne() {
 
+        LinearLayout linearLayout = findViewById(R.id.list_property_image1_progress);
+
+        linearLayout.setVisibility(View.VISIBLE);
+
+        final ProgressBar progressBar = findViewById(R.id.list_property_image1_progress_status_progress);
+
+        final TextView textView = findViewById(R.id.list_property_image1_progress_status);
+
         final StorageReference fileReference =
                 mStorageReference.child(currentUserId + "_photo1.jpg");
 
@@ -866,7 +904,9 @@ public class ListPropertyActivity extends AppCompatActivity {
 
                         strImageUrlOne = uri.toString();
 
-                        Toast.makeText(ListPropertyActivity.this, "Image 1, uploaded successfully", Toast.LENGTH_SHORT).show();
+                        textView.setText("Image 1 Uploaded successfully");
+
+                        progressBar.setVisibility(View.GONE);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -884,6 +924,14 @@ public class ListPropertyActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebaseTwo() {
+
+        LinearLayout linearLayout = findViewById(R.id.list_property_image2_progress);
+
+        final ProgressBar progressBar = findViewById(R.id.list_property_image2_progress_status_progress);
+
+        linearLayout.setVisibility(View.VISIBLE);
+
+        final TextView textView = findViewById(R.id.list_property_image2_progress_status);
 
         final StorageReference fileReference =
                 mStorageReference.child(currentUserId + "_photo2.jpg");
@@ -907,7 +955,9 @@ public class ListPropertyActivity extends AppCompatActivity {
 
                         strImageUrlTwo = uri.toString();
 
-                        Toast.makeText(ListPropertyActivity.this, "Image 2, uploaded successfully", Toast.LENGTH_SHORT).show();
+                        textView.setText("Image 2 Uploaded successfully");
+
+                        progressBar.setVisibility(View.GONE);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -925,6 +975,14 @@ public class ListPropertyActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebaseThree() {
+
+        LinearLayout linearLayout = findViewById(R.id.list_property_image3_progress);
+
+        final ProgressBar progressBar = findViewById(R.id.list_property_image3_progress_status_progress);
+
+        linearLayout.setVisibility(View.VISIBLE);
+
+        final TextView textView = findViewById(R.id.list_property_image3_progress_status);
 
         final StorageReference fileReference =
                 mStorageReference.child(currentUserId + "_photo3.jpg");
@@ -948,7 +1006,9 @@ public class ListPropertyActivity extends AppCompatActivity {
 
                         strImageUrlThree = uri.toString();
 
-                        Toast.makeText(ListPropertyActivity.this, "Image 3, uploaded successfully", Toast.LENGTH_SHORT).show();
+                        textView.setText("Image 3 Uploaded successfully");
+
+                        progressBar.setVisibility(View.GONE);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

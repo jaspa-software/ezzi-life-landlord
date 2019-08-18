@@ -34,10 +34,10 @@ public class MyApplication extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
-                    "EzzyLyf Notification Channel",
+                    "Ezzi Life Notification Channel",
                     NotificationManager.IMPORTANCE_HIGH);
 
-            notificationChannel.setDescription("This is the notification channel for EzzyLyf");
+            notificationChannel.setDescription("This is the notification channel for Ezzi Life");
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
 

@@ -29,9 +29,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             finish();
         }else {
 
-            Intent intent = new Intent(this, WelcomeActivity.class);
-
-            // TODO check auth ID and compare proper screen
+            Intent intent = new Intent(this, MainActivity.class);
 
             startActivity(intent);
 

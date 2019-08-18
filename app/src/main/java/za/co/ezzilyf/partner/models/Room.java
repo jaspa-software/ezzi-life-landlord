@@ -10,7 +10,7 @@ public class Room implements Serializable {
 
     private int occupants;
 
-    private String roomDescription;
+    private String roomNumber;
 
     private String propertyId;
 
@@ -29,6 +29,10 @@ public class Room implements Serializable {
     private String roomImageThree;
 
     private String roomLocation;
+
+    private long lat;
+
+    private long lng;
 
     private String roomName;
 
@@ -63,12 +67,12 @@ public class Room implements Serializable {
         this.occupants = occupants;
     }
 
-    public String getRoomDescription() {
-        return roomDescription;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setRoomDescription(String roomDescription) {
-        this.roomDescription = roomDescription;
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public String getPropertyId() {
@@ -157,5 +161,21 @@ public class Room implements Serializable {
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
+    }
+
+    public long getLat() {
+        return lat;
+    }
+
+    public void setLat(long lat) {
+        this.lat = lat;
+    }
+
+    public long getLng() {
+        return lng;
+    }
+
+    public void setLng(long lng) {
+        this.lng = lng;
     }
 }

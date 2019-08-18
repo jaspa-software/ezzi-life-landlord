@@ -20,6 +20,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -32,6 +34,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.Calendar;
 
@@ -215,12 +219,11 @@ public class AddRoomActivity extends AppCompatActivity {
 
     private void pickImageFromGallery() {
 
-        // intent to pick image
-        Intent intent  =   new Intent(Intent.ACTION_PICK);
-
-        intent.setType("image/*");
-
-        startActivityForResult(intent, RC_IMAGE_PICKER);
+        CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(4,3)
+                .setMinCropResultSize(600,400)
+                .start(this);
     }
 
     @Override
@@ -228,41 +231,54 @@ public class AddRoomActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK && requestCode == RC_IMAGE_PICKER) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
-            switch (selectedImage) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
-                case 1:
+            if (resultCode == RESULT_OK) {
 
-                    ivRoomImage1.setImageURI(data.getData());
+                Uri resultUri = result.getUri();
 
-                    mImageUri = data.getData();
+                switch (selectedImage) {
 
-                    uploadImageToFirebaseOne();
+                    case 1:
 
-                    break;
+                        ivRoomImage1.setImageURI(resultUri);
 
-                case 2:
+                        mImageUri = resultUri;
 
-                    ivRoomImage2.setImageURI(data.getData());
+                        uploadImageToFirebaseOne();
 
-                    mImageUri = data.getData();
+                        break;
 
-                    uploadImageToFirebaseTwo();
+                    case 2:
 
-                    break;
+                        ivRoomImage2.setImageURI(resultUri);
 
-                case 3:
+                        mImageUri = resultUri;
 
-                    ivRoomImage3.setImageURI(data.getData());
+                        uploadImageToFirebaseTwo();
 
-                    mImageUri = data.getData();
+                        break;
 
-                    uploadImageToFirebaseThree();
+                    case 3:
 
-                    break;
+                        ivRoomImage3.setImageURI(resultUri);
+
+                        mImageUri = resultUri;
+
+                        uploadImageToFirebaseThree();
+
+                        break;
+                }
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+
+                Exception error = result.getError();
+
+                Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
-
         }
     }
 
@@ -300,9 +316,9 @@ public class AddRoomActivity extends AppCompatActivity {
 
         }
 
-        if (etRoomDescription.getText().length() < 15) {
+        if (etRoomDescription.getText().length() < 2) {
 
-            etRoomDescription.setError("Room description is too short!");
+            etRoomDescription.setError("Room nmber/name is too short!");
 
             etRoomDescription.requestFocus();
 
@@ -389,8 +405,8 @@ public class AddRoomActivity extends AppCompatActivity {
         room.setRoomImageThree(strImageUrlThree);
 
 
-        // setRoomDescription
-        room.setRoomDescription(etRoomDescription.getText().toString().trim());
+        // setRoomNumber
+        room.setRoomNumber(etRoomDescription.getText().toString().trim());
 
         // setRoomType
         room.setTypeOfOccupants(rbOccupants.getText().toString());
@@ -406,6 +422,9 @@ public class AddRoomActivity extends AppCompatActivity {
 
         // setRoomLocation
         room.setRoomLocation(property.getPropertyLocation());
+
+        // setPrpoertyName
+        room.setPropertyName(property.getPropertyName());
 
         // setRoomStatus
         room.setRoomStatus("Available");
@@ -434,6 +453,8 @@ public class AddRoomActivity extends AppCompatActivity {
                         Toast.makeText(AddRoomActivity.this, "Room Added Successfully", Toast.LENGTH_SHORT).show();
 
                         finish();
+
+
 
                     }
                 });
@@ -487,6 +508,14 @@ public class AddRoomActivity extends AppCompatActivity {
 
     private void uploadImageToFirebaseOne() {
 
+        LinearLayout linearLayout = findViewById(R.id.add_room_image1_progress);
+
+        linearLayout.setVisibility(View.VISIBLE);
+
+        final ProgressBar progressBar = findViewById(R.id.add_room_image1_progress_status_progress);
+
+        final TextView textView = findViewById(R.id.add_room_image1_progress_status);
+
         final StorageReference fileReference =
                 mStorageReference.child(currentUserId + "_photo1.jpg");
 
@@ -509,7 +538,9 @@ public class AddRoomActivity extends AppCompatActivity {
 
                         strImageUrlOne = uri.toString();
 
-                        Toast.makeText(AddRoomActivity.this, "Image 1, uploaded successfully", Toast.LENGTH_SHORT).show();
+                        textView.setText("Image 1 Uploaded successfully");
+
+                        progressBar.setVisibility(View.GONE);
 
                         isImageOneUploaded = true;
 
@@ -529,6 +560,14 @@ public class AddRoomActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebaseTwo() {
+
+        LinearLayout linearLayout = findViewById(R.id.add_room_image2_progress);
+
+        linearLayout.setVisibility(View.VISIBLE);
+
+        final ProgressBar progressBar = findViewById(R.id.add_room_image2_progress_status_progress);
+
+        final TextView textView = findViewById(R.id.add_room_image2_progress_status);
 
         final StorageReference fileReference =
                 mStorageReference.child(currentUserId + "_photo2.jpg");
@@ -552,7 +591,9 @@ public class AddRoomActivity extends AppCompatActivity {
 
                         strImageUrlTwo = uri.toString();
 
-                        Toast.makeText(AddRoomActivity.this, "Image 2, uploaded successfully", Toast.LENGTH_SHORT).show();
+                        textView.setText("Image 2 Uploaded successfully");
+
+                        progressBar.setVisibility(View.GONE);
 
                         isImageTwoUploaded = true;
 
@@ -572,6 +613,14 @@ public class AddRoomActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebaseThree() {
+
+        LinearLayout linearLayout = findViewById(R.id.add_room_image3_progress);
+
+        linearLayout.setVisibility(View.VISIBLE);
+
+        final ProgressBar progressBar = findViewById(R.id.add_room_image3_progress_status_progress);
+
+        final TextView textView = findViewById(R.id.add_room_image3_progress_status);
 
         final StorageReference fileReference =
                 mStorageReference.child(currentUserId + "_photo3.jpg");
@@ -595,7 +644,9 @@ public class AddRoomActivity extends AppCompatActivity {
 
                         strImageUrlThree = uri.toString();
 
-                        Toast.makeText(AddRoomActivity.this, "Image 3, uploaded successfully", Toast.LENGTH_SHORT).show();
+                        textView.setText("Image 3 Uploaded successfully");
+
+                        progressBar.setVisibility(View.GONE);
 
                         isImageThreeUploaded = true;
 

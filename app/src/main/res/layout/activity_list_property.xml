@@ -129,11 +129,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:ignore="MissingPrefix" />
+                <TextView
+                    android:text="TAP /'Search/' belowto enter property address"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <fragment android:id="@+id/list_property_location_autocomplete"
                     android:layout_width="match_parent"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
                     android:layout_height="wrap_content"
                     android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                     />
@@ -146,12 +151,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <CheckBox
-                    android:layout_margin="15dp"
-                    android:text="@string/i_have_right_of_posting_this_property"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
             </LinearLayout>
 
             <ScrollView
@@ -161,7 +160,7 @@
                 android:scrollbars="vertical"
                 android:layout_marginTop="10dp"
                 android:paddingBottom="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
@@ -175,14 +174,14 @@
                     <TextView
                         android:layout_margin="15dp"
                         android:text="@string/looks_great"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_margin="15dp"
                         android:text="@string/you_are_a_step_to_post_your_property"
-                        android:textSize="26sp"
+                        android:textSize="22sp"
                         fontPath="fonts/bold.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -191,6 +190,7 @@
                     <TextView
                         android:layout_margin="15dp"
                         android:text="@string/property_features"
+                        android:textAllCaps="true"
                         android:textSize="18sp"
                         fontPath="fonts/bold.ttf"
                         android:layout_gravity="center_horizontal"
@@ -368,21 +368,21 @@
                 <TextView
                     android:layout_margin="15dp"
                     android:text="Last Step"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_margin="15dp"
                     android:text="Upload photos of your property"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     fontPath="fonts/bold.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:ignore="MissingPrefix" />
 
                 <LinearLayout
-                    android:layout_margin="15dp"
+                    android:layout_margin="5dp"
                     android:orientation="horizontal"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
@@ -391,24 +391,81 @@
                     <ImageView
                         android:id="@+id/list_property_ivPhoto1"
                         android:layout_margin="5dp"
+                        android:scaleType="fitXY"
                         android:src="@drawable/default_image"
-                        android:layout_width="90dp"
+                        android:layout_width="110dp"
                         android:layout_height="90dp" />
 
                     <ImageView
                         android:id="@+id/list_property_ivPhoto2"
+                        android:scaleType="fitXY"
                         android:layout_margin="5dp"
                         android:src="@drawable/default_image"
-                        android:layout_width="90dp"
+                        android:layout_width="110dp"
                         android:layout_height="90dp" />
 
                     <ImageView
                         android:id="@+id/list_property_ivPhoto3"
+                        android:scaleType="fitXY"
                         android:layout_margin="5dp"
                         android:src="@drawable/default_image"
-                        android:layout_width="90dp"
+                        android:layout_width="110dp"
                         android:layout_height="90dp" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/list_property_image1_progress"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/list_property_image1_progress_status_progress"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/list_property_image1_progress_status"
+                        android:text="Uploading Image 1.... Please wait"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/list_property_image2_progress"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/list_property_image2_progress_status_progress"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/list_property_image2_progress_status"
+                        android:text="Uploading Image 2.... Please wait"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/list_property_image3_progress"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/list_property_image3_progress_status_progress"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/list_property_image3_progress_status"
+                        android:text="Uploading Image 3.... Please wait"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
             </LinearLayout>

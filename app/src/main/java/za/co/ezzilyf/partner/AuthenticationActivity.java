@@ -67,7 +67,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-       // setContentView(R.layout.activity_authentication);
+        // setContentView(R.layout.activity_authentication);
 
         rootLayout = findViewById(R.id.authentication_rootLayout);
 
@@ -88,7 +88,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
-                       .setLogo(R.drawable.ezzilyf)      // Set logo drawable
+                       .setLogo(R.drawable.ez_splash)      // Set logo drawable
                         .setTheme(R.style.AppTheme)
                         .setTosAndPrivacyPolicyUrls(
                                 "https://www.ezzilife.co.za/terms-of-services.html",

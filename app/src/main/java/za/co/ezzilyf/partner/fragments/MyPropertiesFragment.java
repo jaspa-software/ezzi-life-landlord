@@ -184,7 +184,7 @@ public class MyPropertiesFragment extends Fragment {
 
                                     Property updatedProperty = dc.getDocument().toObject(Property.class);
 
-                                    showPushNotification(updatedProperty);
+                                   // showPushNotification(updatedProperty);
 
                                 }
                             }

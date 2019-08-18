@@ -27,7 +27,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_welcome);
 
         Button btnListMyPlace = findViewById(R.id.welcome_btnListPlace);
@@ -37,10 +39,6 @@ public class WelcomeActivity extends AppCompatActivity {
         btnListMyPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-
-                auth.signOut();
 
                 Intent intent = new Intent(WelcomeActivity.this, AuthenticationActivity.class);
 
@@ -56,10 +54,6 @@ public class WelcomeActivity extends AppCompatActivity {
         btnSearchForPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-
-                auth.signOut();
 
                 Intent intent = new Intent(WelcomeActivity.this, AuthenticationActivity.class);
 

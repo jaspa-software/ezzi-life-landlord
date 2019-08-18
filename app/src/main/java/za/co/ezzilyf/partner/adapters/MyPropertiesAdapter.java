@@ -48,6 +48,10 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
             myViewHolder.status.setBackgroundResource(R.color.colorPending);
 
+        }   else if (TextUtils.equals(status,"Waiting For Inspector To New Confirm Date and Time")) {
+
+                myViewHolder.status.setBackgroundResource(R.color.colorPending);
+
         } else if (TextUtils.equals(status,"Pending Inspection")) {
 
             myViewHolder.status.setBackgroundResource(R.color.colorPending);
@@ -65,7 +69,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             myViewHolder.status.setBackgroundResource(R.color.colorFeedback);
         }
 
-        myViewHolder.name.setText(propertyList.get(position).getPropertyName());
+        myViewHolder.name.setText(propertyList.get(position).getPropertyName() + " - " + propertyList.get(position).getPropertyId());
 
         myViewHolder.location.setText(propertyList.get(position).getPropertyLocation());
 
