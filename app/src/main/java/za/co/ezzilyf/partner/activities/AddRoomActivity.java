@@ -74,6 +74,8 @@ public class AddRoomActivity extends AppCompatActivity {
 
     private String roomId = "R" + Calendar.getInstance().getTimeInMillis();
 
+
+
     private String strImageUrlOne, strImageUrlTwo, strImageUrlThree;
 
     private StorageReference mStorageReference;
@@ -108,7 +110,6 @@ public class AddRoomActivity extends AppCompatActivity {
 
         property = (Property) getIntent().getSerializableExtra("PROPERTY");
 
-        currentUserId = property.getPropertyListerUid();
 
         rootLayout = findViewById(R.id.add_room_rootLayout);
 
@@ -391,8 +392,7 @@ public class AddRoomActivity extends AppCompatActivity {
         // set roomID
         room.setRoomId(roomId);
 
-        // setPropertyId
-        room.setPropertyId(property.getPropertyId());
+
 
         // setRoomRental
         room.setMonthlyRental(Double.parseDouble(etMonthlyRental.getText().toString().trim()));
@@ -417,11 +417,6 @@ public class AddRoomActivity extends AppCompatActivity {
         // setRoomTenants
         room.setOccupants(Integer.parseInt(etOccupants.getText().toString().trim()));
 
-        // setRoom Landlord
-        room.setPropertyOwnerUid(property.getPropertyListerUid());
-
-        // setRoomLocation
-        room.setRoomLocation(property.getPropertyLocation());
 
         // setPrpoertyName
         room.setPropertyName(property.getPropertyName());

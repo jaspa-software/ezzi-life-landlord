@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "428772232509-fph3gk3qk88dat3q2cc585kmdn7bme5s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ulwembubs.resfinder",
+            "certificate_hash": "d458f8adc7265aca4a4c01600f2fe185cccead0f"
+          }
+        },
+        {
           "client_id": "428772232509-dgq6vkll4ib3ouq74jaloqf1i1nnnpim.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -51,6 +59,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "428772232509-2jro2trssuu4tsut4ahbep6tp6475ogl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.ezzilyf.partner",
+            "certificate_hash": "c3c037ac363bbfc875ee17ea4a499c0b1a8b271f"
+          }
+        },
+        {
+          "client_id": "428772232509-o2d989qmvekpsdjqtapbqnriq0hqo45k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.ezzilyf.partner",
+            "certificate_hash": "d458f8adc7265aca4a4c01600f2fe185cccead0f"
+          }
+        },
         {
           "client_id": "428772232509-m2vdnfel9e4lr930vtunh7k18on33o0n.apps.googleusercontent.com",
           "client_type": 1,

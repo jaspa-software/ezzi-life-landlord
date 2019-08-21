@@ -21,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -54,6 +56,7 @@ public class MyPropertiesFragment extends Fragment {
 
     private NotificationManagerCompat notificationManagerCompat;
 
+    private FirebaseUser user;
 
     public MyPropertiesFragment() {
         // Required empty public constructor
@@ -79,12 +82,8 @@ public class MyPropertiesFragment extends Fragment {
 
         notificationManagerCompat = NotificationManagerCompat.from(getContext());
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
-        SharedPrefConfig sharedPrefConfig = new SharedPrefConfig(getContext());
-
-        String currentUserId =  sharedPrefConfig.readUid();
-
-        String currentUserDisplayName = sharedPrefConfig.readDisplayName();
 
         if (getActivity() !=null) {
 
@@ -115,9 +114,9 @@ public class MyPropertiesFragment extends Fragment {
 
             recyclerView.setHasFixedSize(true);
 
-            textView.setText("Hello "  + currentUserDisplayName + "!");
+            textView.setText("Hello "  + user.getDisplayName() + "!");
 
-            getMyProperties(currentUserId);
+            getMyProperties();
 
             FloatingActionButton fabAddProperty = getActivity().findViewById(R.id.my_properties_fabAddProperty);
             fabAddProperty.setOnClickListener(new View.OnClickListener() {
@@ -134,12 +133,12 @@ public class MyPropertiesFragment extends Fragment {
 
     }
 
-    private void getMyProperties(String currentUserId) {
+    private void getMyProperties() {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("properties")
-                .whereEqualTo("propertyListerUid", currentUserId)
+                .whereEqualTo("properyOwnerUid", user.getUid())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -237,9 +236,9 @@ public class MyPropertiesFragment extends Fragment {
 
     private void showPushNotification(Property updatedProperty) {
 
-        String title = "Property " + updatedProperty.getPropertyId();
-
-        String message = "Property  status changed to " + updatedProperty.getListingStatus();
+//        String title = "Property " + updatedProperty.getPropertyId();
+//
+//        String message = "Property  status changed to " + updatedProperty.getListingStatus();
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(),CHANNEL_ID);
 
@@ -247,13 +246,13 @@ public class MyPropertiesFragment extends Fragment {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getContext(), CHANNEL_ID);
 
-        notificationBuilder.setSmallIcon(R.drawable.icon_app)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .build();
-
-        notificationManagerCompat.notify(1,notificationBuilder.build());
+//        notificationBuilder.setSmallIcon(R.drawable.icon_app)
+//                .setContentTitle(title)
+//                .setContentText(message)
+//                .setPriority(NotificationCompat.PRIORITY_HIGH)
+//                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//                .build();
+//
+//        notificationManagerCompat.notify(1,notificationBuilder.build());
     }
 }

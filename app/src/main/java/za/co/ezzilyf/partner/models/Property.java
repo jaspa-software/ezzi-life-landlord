@@ -4,175 +4,50 @@ import java.io.Serializable;
 
 public class Property implements Serializable {
 
-    private String propertyName;
+    private String propertyRefNumber;
 
-    private String propertyId;
+    private String propertyName;
 
     private String propertyType;
 
-    private String propertyLocation;
+    private String properyAddress;
 
-    private String propertyDescription;
+    private String propertyOwnerName;
 
-    private String propertyListerUid;
+    private String properyOwnerUid;
 
-    private String listingStatus;
+    // amenities
+    private String wifi;
 
-    private String isKitchenAvailable;
+    private String studyArea;
 
-    private String isWifiAvailable;
+    private String wardrobes;
 
-    private String isLoungeAvailable;
+    private String parking;
 
-    private String isStudyAreaAvailable;
+    private String cookingArea;
 
-    private int numberOfBedrooms;
+    private String showers;
 
-    private int numberOfBathrooms;
+    private String lounge;
 
-    private int numberOfToilets;
+    private String laundry;
 
-    private String photoOneUrl;
-
-    private String photoTwoUrl;
-
-    private String photoThreeUrl;
-
-    private double lat;
-
-    private double lng;
+    // property status
+    private String propertyStatus;
 
     public Property() {
 
+        //super();
+
     }
 
-
-    public String getPropertyId() {
-        return propertyId;
+    public String getPropertyRefNumber() {
+        return propertyRefNumber;
     }
 
-    public void setPropertyId(String propertyId) {
-        this.propertyId = propertyId;
-    }
-
-    public String getPropertyType() {
-        return propertyType;
-    }
-
-    public void setPropertyType(String propertyType) {
-        this.propertyType = propertyType;
-    }
-
-    public String getPropertyLocation() {
-        return propertyLocation;
-    }
-
-    public void setPropertyLocation(String propertyLocation) {
-        this.propertyLocation = propertyLocation;
-    }
-
-    public String getPropertyDescription() {
-        return propertyDescription;
-    }
-
-    public void setPropertyDescription(String propertyDescription) {
-        this.propertyDescription = propertyDescription;
-    }
-
-    public String getPropertyListerUid() {
-        return propertyListerUid;
-    }
-
-    public void setPropertyListerUid(String propertyListerUid) {
-        this.propertyListerUid = propertyListerUid;
-    }
-
-    public String getListingStatus() {
-        return listingStatus;
-    }
-
-    public void setListingStatus(String listingStatus) {
-        this.listingStatus = listingStatus;
-    }
-
-    public String getIsKitchenAvailable() {
-        return isKitchenAvailable;
-    }
-
-    public void setIsKitchenAvailable(String isKitchenAvailable) {
-        this.isKitchenAvailable = isKitchenAvailable;
-    }
-
-    public String getIsWifiAvailable() {
-        return isWifiAvailable;
-    }
-
-    public void setIsWifiAvailable(String isWifiAvailable) {
-        this.isWifiAvailable = isWifiAvailable;
-    }
-
-    public String getIsLoungeAvailable() {
-        return isLoungeAvailable;
-    }
-
-    public void setIsLoungeAvailable(String isLoungeAvailable) {
-        this.isLoungeAvailable = isLoungeAvailable;
-    }
-
-    public String getIsStudyAreaAvailable() {
-        return isStudyAreaAvailable;
-    }
-
-    public void setIsStudyAreaAvailable(String isStudyAreaAvailable) {
-        this.isStudyAreaAvailable = isStudyAreaAvailable;
-    }
-
-    public int getNumberOfBedrooms() {
-        return numberOfBedrooms;
-    }
-
-    public void setNumberOfBedrooms(int numberOfBedrooms) {
-        this.numberOfBedrooms = numberOfBedrooms;
-    }
-
-    public int getNumberOfBathrooms() {
-        return numberOfBathrooms;
-    }
-
-    public void setNumberOfBathrooms(int numberOfBathrooms) {
-        this.numberOfBathrooms = numberOfBathrooms;
-    }
-
-    public int getNumberOfToilets() {
-        return numberOfToilets;
-    }
-
-    public void setNumberOfToilets(int numberOfToilets) {
-        this.numberOfToilets = numberOfToilets;
-    }
-
-    public String getPhotoOneUrl() {
-        return photoOneUrl;
-    }
-
-    public void setPhotoOneUrl(String photoOneUrl) {
-        this.photoOneUrl = photoOneUrl;
-    }
-
-    public String getPhotoTwoUrl() {
-        return photoTwoUrl;
-    }
-
-    public void setPhotoTwoUrl(String photoTwoUrl) {
-        this.photoTwoUrl = photoTwoUrl;
-    }
-
-    public String getPhotoThreeUrl() {
-        return photoThreeUrl;
-    }
-
-    public void setPhotoThreeUrl(String photoThreeUrl) {
-        this.photoThreeUrl = photoThreeUrl;
+    public void setPropertyRefNumber(String propertyRefNumber) {
+        this.propertyRefNumber = propertyRefNumber;
     }
 
     public String getPropertyName() {
@@ -183,19 +58,107 @@ public class Property implements Serializable {
         this.propertyName = propertyName;
     }
 
-    public double getLat() {
-        return lat;
+    public String getPropertyType() {
+        return propertyType;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
     }
 
-    public double getLng() {
-        return lng;
+    public String getProperyAddress() {
+        return properyAddress;
     }
 
-    public void setLng(double lng) {
-        this.lng = lng;
+    public void setProperyAddress(String properyAddress) {
+        this.properyAddress = properyAddress;
+    }
+
+    public String getPropertyOwnerName() {
+        return propertyOwnerName;
+    }
+
+    public void setPropertyOwnerName(String propertyOwnerName) {
+        this.propertyOwnerName = propertyOwnerName;
+    }
+
+    public String getProperyOwnerUid() {
+        return properyOwnerUid;
+    }
+
+    public void setProperyOwnerUid(String properyOwnerUid) {
+        this.properyOwnerUid = properyOwnerUid;
+    }
+
+    public String getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(String wifi) {
+        this.wifi = wifi;
+    }
+
+    public String getStudyArea() {
+        return studyArea;
+    }
+
+    public void setStudyArea(String studyArea) {
+        this.studyArea = studyArea;
+    }
+
+    public String getWardrobes() {
+        return wardrobes;
+    }
+
+    public void setWardrobes(String wardrobes) {
+        this.wardrobes = wardrobes;
+    }
+
+    public String getParking() {
+        return parking;
+    }
+
+    public void setParking(String parking) {
+        this.parking = parking;
+    }
+
+    public String getCookingArea() {
+        return cookingArea;
+    }
+
+    public void setCookingArea(String cookingArea) {
+        this.cookingArea = cookingArea;
+    }
+
+    public String getShowers() {
+        return showers;
+    }
+
+    public void setShowers(String showers) {
+        this.showers = showers;
+    }
+
+    public String getLounge() {
+        return lounge;
+    }
+
+    public void setLounge(String lounge) {
+        this.lounge = lounge;
+    }
+
+    public String getLaundry() {
+        return laundry;
+    }
+
+    public void setLaundry(String laundry) {
+        this.laundry = laundry;
+    }
+
+    public String getPropertyStatus() {
+        return propertyStatus;
+    }
+
+    public void setPropertyStatus(String propertyStatus) {
+        this.propertyStatus = propertyStatus;
     }
 }

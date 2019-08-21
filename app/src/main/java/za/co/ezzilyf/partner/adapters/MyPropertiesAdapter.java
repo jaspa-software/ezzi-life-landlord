@@ -38,42 +38,42 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
 
-        String status = propertyList.get(position).getListingStatus();
+//        //String status = propertyList.get(position).getListingStatus();
+//
+//        if (TextUtils.equals(status,"Pending for Approval")) {
+//
+//            myViewHolder.status.setBackgroundResource(R.color.colorPending);
+//
+//        }else if (TextUtils.equals(status,"Confirm Inspection Date")) {
+//
+//            myViewHolder.status.setBackgroundResource(R.color.colorPending);
+//
+//        }   else if (TextUtils.equals(status,"Waiting For Inspector To New Confirm Date and Time")) {
+//
+//                myViewHolder.status.setBackgroundResource(R.color.colorPending);
+//
+//        } else if (TextUtils.equals(status,"Pending Inspection")) {
+//
+//            myViewHolder.status.setBackgroundResource(R.color.colorPending);
+//
+//        }else if (TextUtils.equals(status,"Approved")) {
+//
+//            myViewHolder.status.setBackgroundResource(R.color.colorApproved);
+//
+//        }else if (TextUtils.equals(status,"Not Approved")) {
+//
+//            myViewHolder.status.setBackgroundResource(R.color.colorDeclined);
+//
+//        }else if (TextUtils.equals(status,"Resubmit")) {
+//
+//            myViewHolder.status.setBackgroundResource(R.color.colorFeedback);
+//        }
+//
+        myViewHolder.name.setText(propertyList.get(position).getPropertyName() + " - " + propertyList.get(position).getPropertyRefNumber());
 
-        if (TextUtils.equals(status,"Pending for Approval")) {
+        myViewHolder.location.setText(propertyList.get(position).getProperyAddress());
 
-            myViewHolder.status.setBackgroundResource(R.color.colorPending);
-
-        }else if (TextUtils.equals(status,"Confirm Inspection Date")) {
-
-            myViewHolder.status.setBackgroundResource(R.color.colorPending);
-
-        }   else if (TextUtils.equals(status,"Waiting For Inspector To New Confirm Date and Time")) {
-
-                myViewHolder.status.setBackgroundResource(R.color.colorPending);
-
-        } else if (TextUtils.equals(status,"Pending Inspection")) {
-
-            myViewHolder.status.setBackgroundResource(R.color.colorPending);
-
-        }else if (TextUtils.equals(status,"Approved")) {
-
-            myViewHolder.status.setBackgroundResource(R.color.colorApproved);
-
-        }else if (TextUtils.equals(status,"Not Approved")) {
-
-            myViewHolder.status.setBackgroundResource(R.color.colorDeclined);
-
-        }else if (TextUtils.equals(status,"Resubmit")) {
-
-            myViewHolder.status.setBackgroundResource(R.color.colorFeedback);
-        }
-
-        myViewHolder.name.setText(propertyList.get(position).getPropertyName() + " - " + propertyList.get(position).getPropertyId());
-
-        myViewHolder.location.setText(propertyList.get(position).getPropertyLocation());
-
-        myViewHolder.status.setText(propertyList.get(position).getListingStatus());
+        myViewHolder.status.setText(propertyList.get(position).getPropertyStatus());
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +83,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-               intent.putExtra("PROPERTY", propertyList.get(position));
+               intent.putExtra("PROPERTY_ID", propertyList.get(position).getPropertyRefNumber());
 
                context.startActivity(intent);
 

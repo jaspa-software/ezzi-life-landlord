@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:id="@+id/amenities_rootLayout"
+    tools:context=".activities.AmenitiesActivity">
+
+    <ImageView
+        android:id="@+id/amenities_btnClose"
+        android:src="@drawable/icon_close"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <ImageView
+        android:src="@drawable/property"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="280dp"
+        android:layout_height="180dp" />
+
+    <TextView
+        android:text="Select available amenities"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        fontPath="fonts/bold.ttf"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingPrefix" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/amenities_cbWifi"
+                android:text="Wifi"
+                android:drawableLeft="@drawable/icon_wifi"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/amenities_cbStudyDesks"
+                android:text="Study Area/Desks"
+                android:drawableLeft="@drawable/icon_study"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/amenities_cbWadrobes"
+                android:text="Wadrobes"
+                android:drawableLeft="@drawable/icon_wardrobe"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/amenities_cbBed"
+                android:text="Bed"
+                android:drawableLeft="@drawable/icon_bedroom"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/amenities_cbParking"
+                android:text="Parking"
+                android:drawableLeft="@drawable/icon_parking"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/amenities_cbCookingArea"
+                android:text="Cooking Area"
+                android:drawableLeft="@drawable/icon_kitchen"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+
+            <CheckBox
+                android:id="@+id/amenities_cbLounge"
+                android:text="Lounge/TV Room"
+                android:drawableLeft="@drawable/icon_lounge"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/amenities_cbLaundry"
+                android:text="Laundry"
+                android:drawableLeft="@drawable/icon_laundry"
+                android:drawablePadding="10dp"
+                android:layoutDirection="rtl"
+                android:layout_width="280dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

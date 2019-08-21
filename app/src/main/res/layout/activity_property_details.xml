@@ -23,328 +23,357 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:id="@+id/property_details_sliderLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp" >
+                <TextView
+                    android:id="@+id/property_details_message"
+                    android:text="Your listing is incomplete. Please add missing information"
+                    android:textSize="14sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content" />
 
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/property_details_viewPager"
+                <androidx.cardview.widget.CardView
+
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_margin="10dp"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                    </androidx.viewpager.widget.ViewPager>
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <com.viewpagerindicator.CirclePageIndicator
-                        android:id="@+id/event_overview_indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="bottom"
-                        android:padding="10dp"
-                        app:centered="true"
-                        app:fillColor="#df0623"
-                        app:pageColor="#fff"
-                        app:snap="false" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.4"
+                                fontPath="fonts/bold.ttf"
+                                android:text="Property Name"
+                                android:layout_height="wrap_content"
+                                tools:ignore="MissingPrefix" />
 
-                </RelativeLayout>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.6"
+                                android:id="@+id/property_details_tvPropertyName"
+                                android:layout_height="wrap_content"
+                                tools:ignore="MissingPrefix" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/property_details_tvLocation"
-                        android:drawableLeft="@drawable/icon_address"
-                        android:drawablePadding="10dp"
-                        android:textSize="18sp"
-                        android:layout_weight="0.7"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_margin="10dp"
-                        android:id="@+id/property_details_tvStatus"
-                        android:textSize="13sp"
-                        android:gravity="center_horizontal"
-                        android:background="@color/colorAlternative"
-                        android:padding="10dp"
-                        android:layout_weight="0.3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.4"
+                                fontPath="fonts/bold.ttf"
+                                android:text="Property Listing ID"
+                                android:layout_height="wrap_content"
+                                tools:ignore="MissingPrefix" />
 
-                </LinearLayout>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.6"
+                                android:id="@+id/property_details_tvPropertyId"
+                                android:layout_height="wrap_content"
+                                />
 
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/property_detetails_inspection"
-                    android:background="#696969"
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.4"
+                                fontPath="fonts/bold.ttf"
+                                android:text="Property Type"
+                                android:layout_height="wrap_content"
+                                tools:ignore="MissingPrefix" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.6"
+                                android:id="@+id/property_details_tvPropertyType"
+                                android:layout_height="wrap_content"
+                                tools:ignore="MissingPrefix" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.4"
+                                fontPath="fonts/bold.ttf"
+                                android:text="Property Address"
+                                android:layout_height="wrap_content"
+                                tools:ignore="MissingPrefix" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_weight="0.6"
+                                android:id="@+id/property_details_tvPropertyAddress"
+                                android:layout_height="wrap_content"
+                                tools:ignore="MissingPrefix" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- amenities -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/property_details_amenitiesLayout"
                     android:layout_margin="10dp"
-                    android:orientation="vertical"
+                    app:cardCornerRadius="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Proposed Inspection Date"
-                        android:textColor="#fff"
-                        android:textAllCaps="true"
-                        fontPath="fonts/bold.ttf"
-                        android:textSize="18sp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:ignore="MissingPrefix" />
-
-                    <TextView
-                        android:textColor="#fff"
-                        android:id="@+id/property_details_tvDateTime"
-                        android:textAllCaps="true"
-                        android:textSize="18sp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <Button
-                            android:id="@+id/property_details_btnRescheduleDate"
-                            android:background="#d9534f"
-                            android:layout_margin="5dp"
-                            android:text="Reschedule"
-                            android:layout_weight="0.5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
 
-                        <Button
-                            android:id="@+id/property_details_btnAcceptDate"
-                            android:background="#5cb85c"
-                            android:layout_margin="5dp"
-                            android:text="Accept"
-                            android:layout_weight="0.5"
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:src="@drawable/amenities"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Amenities"
+                                android:textSize="22sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:id="@+id/property_details_tvAmenitiesStatus"
+                                android:text="Add house amenities"
+                                android:textAllCaps="true"
+                                android:layout_marginStart="10dp"
+                                android:textColor="@color/quantum_googred"
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/icon_right_more"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+
                     </LinearLayout>
 
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:text="@string/description"
-                    fontPath="fonts/bold.ttf"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MissingPrefix" />
 
-                <EditText
-                    android:id="@+id/property_details_etDescription"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:enabled="false"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+                <!-- institutions -->
                 <androidx.cardview.widget.CardView
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
+                    android:id="@+id/property_details_institutionsLayout"
                     android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:background="#f6f6f6"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="@string/features_and_amenities"
-                            fontPath="fonts/bold.ttf"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="10dp"
-                            android:textSize="18sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:ignore="MissingPrefix" />
+
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:src="@drawable/institutions"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp" />
 
                         <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/property_details_tvBedroom"
-                                android:drawableStart="@drawable/icon_bedroom"
-                                android:textSize="24sp"
-                                android:text="5"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:layout_margin="8dp"
-                                android:drawablePadding="8dp"
-                                android:layout_width="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Campuses"
+                                android:textSize="22sp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
-
                             <TextView
-                                android:id="@+id/property_details_tvBathrooms"
-                                android:drawableStart="@drawable/icon_bathroom"
-                                android:textSize="24sp"
-                                android:text="2"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:drawablePadding="8dp"
-                                android:layout_margin="8dp"
+                                android:id="@+id/property_details_tvInstitutionsStatus"
+                                android:text="No campuses added"
+                                android:textAllCaps="true"
+                                android:layout_marginStart="10dp"
+                                android:textColor="@color/quantum_googred"
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:id="@+id/property_details_tvToilets"
-                                android:drawableStart="@drawable/icon_toilet"
-                                android:textSize="24sp"
-                                android:text="3"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:drawablePadding="8dp"
-                                android:layout_margin="8dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/property_details_tvStudyArea"
-                                android:drawableStart="@drawable/icon_study"
-                                android:textSize="24sp"
-                                android:text="YES"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:layout_margin="8dp"
-                                android:drawablePadding="8dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:id="@+id/property_details_tvKitchen"
-                                android:drawableStart="@drawable/icon_kitchen"
-                                android:textSize="24sp"
-                                android:text="YES"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:drawablePadding="8dp"
-                                android:layout_margin="8dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:id="@+id/property_details_tvLounge"
-                                android:drawableStart="@drawable/icon_lounge"
-                                android:textSize="24sp"
-                                android:text="YES"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:drawablePadding="8dp"
-                                android:layout_margin="8dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:id="@+id/property_details_tvWifi"
-                                android:drawableStart="@drawable/icon_wifi"
-                                android:textSize="24sp"
-                                android:text="NO"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:drawablePadding="8dp"
-                                android:layout_margin="8dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/icon_right_more"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
 
                     </LinearLayout>
 
+                </androidx.cardview.widget.CardView>
+
+                <!-- photos -->
+                <androidx.cardview.widget.CardView
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:src="@drawable/photos"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Photos"
+                                android:textSize="22sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:id="@+id/property_details_tvPhotosStatus"
+                                android:text="Upload prperty photos"
+                                android:textAllCaps="true"
+                                android:layout_marginStart="10dp"
+                                android:textColor="@color/quantum_googred"
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/icon_right_more"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:text="Comments/Feedback"
-                    fontPath="fonts/bold.ttf"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MissingPrefix" />
-
-                <TextView
-                    android:id="@+id/property_details_tvComments"
-                    android:layout_marginTop="10dp"
-                    android:textSize="13sp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                <!-- rooms -->
+                <androidx.cardview.widget.CardView
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="@string/next_evaluation_date"
-                    fontPath="fonts/bold.ttf"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="10dp"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MissingPrefix" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/property_details_tvNextEvaluationDate"
-                    android:textSize="24sp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:src="@drawable/rooms"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp" />
 
-                <Button
-                    android:id="@+id/property_details_btnAddRoom"
-                    android:visibility="gone"
-                    android:textSize="18sp"
-                    android:layout_marginTop="25dp"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="10dp"
-                    android:text="Add Rooms"
-                    android:textColor="#fff"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/property_details_btnCancelListing"
-                    android:textSize="18sp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="10dp"
-                    android:text="Cancel Listing"
-                    android:textColor="#fff"
-                    android:background="#ba3434"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Rooms"
+                                android:textSize="22sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:id="@+id/property_details_tvRoomsStatus"
+                                android:text="Add rooms"
+                                android:textAllCaps="true"
+                                android:layout_marginStart="10dp"
+                                android:textColor="@color/quantum_googred"
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_margin="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/icon_right_more"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

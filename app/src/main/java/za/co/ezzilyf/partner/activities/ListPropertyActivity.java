@@ -28,6 +28,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,8 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -50,6 +54,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import za.co.ezzilyf.partner.R;
@@ -60,55 +65,21 @@ public class ListPropertyActivity extends AppCompatActivity {
 
     private static final String TAG = "ListPropertyActivity";
 
-    private static final int RC_IMAGE_PICKER = 200;
+    private EditText etPropertyName, etPropertyAddress;
 
-    private static final int RC_PERMISSION = 200;
+    private RadioGroup rbPropertyType;
 
-    private boolean isPropertyTypeSelected = false;
-
-    private EditText etPropertyName, etPropertyDescription, etBedrooms, etBathrooms, etToilets;
-
-    private CheckBox cbStudyArea, cbLounge, cbKitchen, cbWifi;
-
-    private TextView tvGreeting;
+    private RadioButton rbApartment, rbHouse, rbBlockRooms;
 
     private AutocompleteSupportFragment autocompleteSupportFragment;
-
-    private Button btnHouse, btnApartment, btnHostels;
-
-    private TextView etPropertyLocation;
-
-    private CheckBox cbConfirmOwnership;
-
-    private Button btnBack, btnNext, btnSubmit;
-
-    private LinearLayout step1, step2, step3;
-
-    private int currentLayout = 1;
-
-    private int selectedImage = 0;
-
-    private String strKitchen, strLounge, strWifi, strStudyArea, strPropertyType;
-
-    private int intBedrooms, intBathrooms, intToilets;
-
-    private ImageView ivPhoto1, ivPhoto2, ivPhoto3;
-
-    private ProgressDialog progressDialog;
 
     private CoordinatorLayout rootLayout;
 
     private ScrollView scrollView;
 
-    private String strImageUrlOne, strImageUrlTwo, strImageUrlThree;
+    private Button btnSubmit;
 
-    private StorageReference mStorageReference;
-
-    private String currentUserId;
-
-    private Uri mImageUri;
-
-    private double lat, lng;
+    private FirebaseUser user;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -124,700 +95,146 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_list_property);
 
-        Toolbar toolbar = findViewById(R.id.list_property_toolbar);
-
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setTitle("List your Property");
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mStorageReference = FirebaseStorage.getInstance().getReference("properties");
-
-        SharedPrefConfig sharedPrefConfig = new SharedPrefConfig(this );
-
-        currentUserId = sharedPrefConfig.readUid();
-
-        rootLayout = findViewById(R.id.list_property_rootLayout);
-
-        scrollView = findViewById(R.id.listing_property_scrollView);
-
-        progressDialog = new ProgressDialog(this);
-
-        progressDialog.setTitle("Submitting Your Listing");
-
-        progressDialog.setMessage("Please wait while we submitting your listing...");
-
-        progressDialog.setCanceledOnTouchOutside(false);
-
         initViews();
-
-        setListeners();
-
-    }
-
-    private void initViews() {
-
-        autocompleteSupportFragment = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.list_property_location_autocomplete);
-
-        step1 = findViewById(R.id.list_property_step1Layout);
-
-        step2 = findViewById(R.id.list_property_step2Layout);
-
-        step3 = findViewById(R.id.list_property_step3Layout);
-
-        btnBack = findViewById(R.id.list_property_btnBack);
-
-        btnNext = findViewById(R.id.list_property_btnNext);
-
-        btnHostels = findViewById(R.id.list_property_Hostels);
-
-        btnHouse = findViewById(R.id.list_property_btnHouse);
-
-        btnSubmit = findViewById(R.id.list_property_btnSubmit);
-
-        btnApartment = findViewById(R.id.list_property_btnApartment);
-
-        etPropertyDescription = findViewById(R.id.list_property_etPropertySummary);
 
         initGooglePlaces();
 
-        etPropertyName = findViewById(R.id.list_property_etPropertyName);
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
-        etPropertyLocation = findViewById(R.id.list_property_etPropertyLocation);
-
-        etBedrooms = findViewById(R.id.list_property_etBedrooms);
-
-        etBathrooms = findViewById(R.id.list_property_etBathrooms);
-
-        etToilets = findViewById(R.id.list_property_etToilets);
-
-        cbKitchen = findViewById(R.id.list_property_cbKitchen);
-
-        cbLounge = findViewById(R.id.list_property_cLounge);
-
-        cbStudyArea = findViewById(R.id.list_property_cbStudyArea);
-
-        cbWifi = findViewById(R.id.list_property_cbWifi);
-
-        ivPhoto1 = findViewById(R.id.list_property_ivPhoto1);
-
-        ivPhoto2 = findViewById(R.id.list_property_ivPhoto2);
-
-        ivPhoto3 = findViewById(R.id.list_property_ivPhoto3);
-
-    }
-
-    private void setListeners() {
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                previousLayoutOut();
-
-                currentLayout--;
-
-            }
-        });
-
-        btnApartment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                btnApartment.setBackgroundResource(R.drawable.selected_choice_button);
-
-                btnHouse.setBackgroundResource(R.drawable.unselected_choice_button);
-
-                btnHostels.setBackgroundResource(R.drawable.unselected_choice_button);
-
-                isPropertyTypeSelected =true;
-
-                strPropertyType = "Apartment";
-
-            }
-        });
-
-        btnHouse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                btnApartment.setBackgroundResource(R.drawable.unselected_choice_button);
-
-                btnHouse.setBackgroundResource(R.drawable.selected_choice_button);
-
-                btnHostels.setBackgroundResource(R.drawable.unselected_choice_button);
-
-                isPropertyTypeSelected = true;
-
-                strPropertyType = "House";
-
-            }
-        });
-
-        btnHostels.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                btnApartment.setBackgroundResource(R.drawable.unselected_choice_button);
-
-                btnHouse.setBackgroundResource(R.drawable.unselected_choice_button);
-
-                btnHostels.setBackgroundResource(R.drawable.selected_choice_button);
-
-                isPropertyTypeSelected = true;
-
-                strPropertyType = "Hostels";
-
-            }
-        });
-
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                currentLayout++;
-
-                nextLayoutOut();
-
-            }
-        });
+        btnSubmit = findViewById(R.id.list_my_property_btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // setup the alert builder
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListPropertyActivity.this);
+                submitListing();
 
-                builder.setTitle("Submit Listing");
-
-                builder.setMessage("Your listing is ready for submission. Continue to submit?");
-
-                builder.setCancelable(false);
-
-                // add the buttons
-                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        submitListing();
-                    }
-                });
-
-                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-                    }
-                });
-
-                // create and show the alert dialog
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
-
-        cbKitchen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked) {
-
-                    strKitchen = "Yes";
-
-                }else {
-
-                    strKitchen = "No";
-                }
-
-            }
-        });
-
-        cbStudyArea.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked) {
-
-                    strStudyArea = "Yes";
-
-                }else {
-
-                    strStudyArea = "No";
-                }
-
-            }
-        });
-
-        cbLounge.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked) {
-
-                    strLounge = "Yes";
-
-                }else {
-
-                    strLounge = "No";
-                }
-
-            }
-        });
-
-        cbWifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked) {
-
-                    strWifi = "Yes";
-
-                }else {
-
-                    strWifi = "No";
-                }
-
-            }
-        });
-
-        ivPhoto1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectedImage = 1;
-
-                checkPermission();
-            }
-        });
-
-        ivPhoto2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectedImage = 2;
-
-                checkPermission();
-            }
-        });
-
-        ivPhoto3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectedImage = 3;
-
-                checkPermission();
             }
         });
 
     }
 
-    // save listing details to Firebase("properties")
     private void submitListing() {
 
-        progressDialog.show();
+        // check data
+        if(TextUtils.isEmpty(etPropertyName.getText())) {
 
-        String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
+            etPropertyName.setError("Property Name is Required!");
 
-        String listingId = "EL" + timestamp.substring(timestamp.length() - 6);
+            etPropertyName.requestFocus();
 
-        final Property property = new Property();
+            return;
+        }
 
-        // set property details
-        property.setPropertyId(listingId);
+        if (TextUtils.isEmpty(etPropertyAddress.getText())) {
 
-        property.setPropertyListerUid(currentUserId);
+            etPropertyAddress.setError("Property Address is Required!");
 
-        property.setPropertyName(etPropertyName.getText().toString().trim());
+            etPropertyAddress.requestFocus();
 
-        property.setPropertyDescription(etPropertyDescription.getText().toString().trim());
+            return;
+        }
 
-        property.setPropertyLocation(etPropertyLocation.getText().toString().trim());
+        if (!rbHouse.isChecked() && !rbBlockRooms.isChecked() && !rbApartment.isChecked()) {
 
-        property.setPropertyType(strPropertyType);
+            showSnackBar("Property Type is required");
 
-        property.setIsKitchenAvailable(strKitchen);
+            return;
+        }
 
-        property.setIsLoungeAvailable(strLounge);
+        String propertyType = "";
 
-        property.setIsStudyAreaAvailable(strStudyArea);
+        if (rbHouse.isChecked()) {
 
-        property.setIsWifiAvailable(strWifi);
+            propertyType = "House";
+        }
 
-        property.setNumberOfBedrooms(Integer.parseInt(etBedrooms.getText().toString().trim()));
+        if (rbBlockRooms.isChecked()) {
 
-        property.setNumberOfBathrooms(Integer.parseInt(etBathrooms.getText().toString().trim()));
+            propertyType = "Block Rooms";
+        }
 
-        property.setNumberOfToilets(Integer.parseInt(etToilets.getText().toString().trim()));
+        if (rbApartment.isChecked()) {
 
-        property.setPhotoOneUrl(strImageUrlOne);
+            propertyType = "Apartment";
+        }
 
-        property.setPhotoTwoUrl(strImageUrlTwo);
+        HashMap<String, Object> property = new HashMap<>();
 
-        property.setPhotoThreeUrl(strImageUrlThree);
+        final String propertyRefNumber = ""+Calendar.getInstance().getTimeInMillis();
 
-        property.setListingStatus("Pending for Approval");
+        property.put("propertyRefNumber",propertyRefNumber.substring(propertyRefNumber.length() - 6));
 
-        property.setLat(lat);
+        property.put("propertyName",etPropertyName.getText().toString());
 
-        property.setLng(lng);
+        property.put("propertyType",propertyType);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        property.put("properyAddress",etPropertyAddress.getText().toString());
 
-        db.collection("properties")
-                .document(listingId)
+        property.put("propertyOwnerName",user.getDisplayName());
+
+        property.put("properyOwnerUid",user.getUid());
+
+        // disable button
+        btnSubmit.setEnabled(false);
+
+        // change button text
+        btnSubmit.setText("Submitting...");
+        //
+
+        FirebaseFirestore propertyRef = FirebaseFirestore.getInstance();
+
+        propertyRef.collection("properties")
+                .document(propertyRefNumber.substring(propertyRefNumber.length() - 6))
                 .set(property)
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
 
-                        progressDialog.dismiss();
-
                         showSnackBar(e.getMessage());
 
+                        Log.d(TAG, "onFailure: ERROR " + e.getMessage());
+
+                        btnSubmit.setEnabled(true);
+
+                        // change button text
+                        btnSubmit.setText("Submit");
                     }
                 })
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
 
-                        progressDialog.dismiss();
+                       Intent intent = new Intent(ListPropertyActivity.this, PropertyDetailsActivity.class);
 
-                        Toast.makeText(ListPropertyActivity.this, "Property Listing Submitted Successfully", Toast.LENGTH_LONG).show();
+                       intent.putExtra("PROPERTY_ID", propertyRefNumber.substring(propertyRefNumber.length() - 6));
 
-                        finish();
+                        startActivity(intent);
+
+                       finish();
 
                     }
                 });
 
     }
 
-    private void checkPermission() {
+    private void initViews() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        rootLayout = findViewById(R.id.list_property_rootLayout);
 
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED) {
+        autocompleteSupportFragment =  (AutocompleteSupportFragment)getSupportFragmentManager().findFragmentById(R.id.list_my_property_tvAddress);
 
-                // permission not granted. ask for it
-                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+        etPropertyName = findViewById(R.id.list_property_etName);
 
-                // show pop up
-                requestPermissions(permissions,RC_PERMISSION);
+        etPropertyAddress = findViewById(R.id.list_my_property_etAddress);
 
-            }else {
+        rbPropertyType = findViewById(R.id.list_my_property_rbType);
 
-                // permission already granted
-                pickImageFromGallery();
-            }
+        rbApartment = findViewById(R.id.list_my_property_rbApartment);
 
-        }else{
-            // device less then marshmallow
+        rbHouse = findViewById(R.id.list_my_property_rbHouse);
 
-            pickImageFromGallery();
-
-        }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-       // super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode) {
-
-            case  RC_PERMISSION :
-
-                if (grantResults.length > 0 && grantResults[0] ==
-                        PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted
-                    pickImageFromGallery();
-
-                }else{
-
-                    // permission denied
-                    showSnackBar("Permission Denied...!");
-                }
-        }
-    }
-
-    private void pickImageFromGallery() {
-
-//        // intent to pick image
-//        Intent intent  =   new Intent(Intent.ACTION_PICK);
-//
-//        intent.setType("image/*");
-//
-//        startActivityForResult(intent, RC_IMAGE_PICKER);
-
-        // start picker to get image for cropping and then use the image in cropping activity
-        CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(4,3)
-                .setMinCropResultSize(600,400)
-                .start(this);
-
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            if (resultCode == RESULT_OK) {
-
-                Uri resultUri = result.getUri();
-
-                switch (selectedImage) {
-
-                    case 1:
-
-                        ivPhoto1.setImageURI(resultUri);
-
-                        mImageUri = resultUri;
-
-                        uploadImageToFirebaseOne();
-
-                        break;
-
-                    case 2:
-
-                        ivPhoto2.setImageURI(resultUri);
-
-                        mImageUri = resultUri;
-
-                        uploadImageToFirebaseTwo();
-
-                        break;
-
-                    case 3:
-
-                        ivPhoto3.setImageURI(resultUri);
-
-                        mImageUri = resultUri;
-
-                        uploadImageToFirebaseThree();
-
-                        break;
-                }
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-
-                Exception error = result.getError();
-
-                Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-
-        }
-    }
-
-    private void nextLayoutOut() {
-
-        switch (currentLayout) {
-
-            case 1:
-
-//                step1.setVisibility(View.GONE);
-//
-//                step2.setVisibility(View.VISIBLE);
-//
-//                step3.setVisibility(View.GONE);
-//
-//                btnBack.setVisibility(View.VISIBLE);
-//
-//                btnNext.setVisibility(View.VISIBLE);
-//
-//
-//                break;
-
-            case 2:
-
-                if (TextUtils.isEmpty(etPropertyName.getText())) {
-
-                    etPropertyName.setError("Field cannot be empty!");
-
-                    etPropertyName.requestFocus();
-
-                    currentLayout--;
-
-                    return;
-
-                }
-
-
-                if (TextUtils.isEmpty(etPropertyDescription.getText())) {
-
-                    etPropertyDescription.setError("Field cannot be empty!");
-
-                    etPropertyDescription.requestFocus();
-
-                    currentLayout--;
-
-                    return;
-
-                }
-
-                if (etPropertyDescription.getText().length() < 50) {
-
-                    etPropertyDescription.setError("Description is too short, minimum of 50 characters required!");
-
-                    etPropertyDescription.requestFocus();
-
-                    currentLayout--;
-
-                    return;
-
-                }
-
-                if (!isPropertyTypeSelected) {
-
-                    Toast.makeText(this, "Please selected property type!", Toast.LENGTH_SHORT).show();
-
-                    currentLayout--;
-
-                    return;
-
-                }
-
-                if (TextUtils.isEmpty(etPropertyLocation.getText())) {
-
-                    Toast.makeText(this, "Please select property location", Toast.LENGTH_SHORT).show();
-
-                    currentLayout--;
-
-                    return;
-                }
-
-
-                step1.setVisibility(View.GONE);
-
-                step2.setVisibility(View.VISIBLE);
-
-                scrollView.setVisibility(View.VISIBLE);
-
-                step3.setVisibility(View.GONE);
-
-                btnBack.setVisibility(View.VISIBLE);
-
-                btnNext.setVisibility(View.VISIBLE);
-
-                break;
-
-            case 3:
-
-                if (TextUtils.isEmpty(etBedrooms.getText())) {
-
-                    etBedrooms.setError("Enter number of bedrooms");
-
-                    etBedrooms.requestFocus();
-
-                    currentLayout--;
-
-                    return;
-
-                }
-
-                if (TextUtils.isEmpty(etBathrooms.getText())) {
-
-                    etBathrooms.setError("Enter number of bathrooms");
-
-                    etBathrooms.requestFocus();
-
-                    currentLayout--;
-
-                    return;
-
-                }
-
-                if (TextUtils.isEmpty(etToilets.getText())) {
-
-                    etToilets.setError("Enter number of toilets");
-
-                    etToilets.requestFocus();
-
-                    currentLayout--;
-
-                    return;
-
-                }
-
-
-                step1.setVisibility(View.GONE);
-
-                step2.setVisibility(View.GONE);
-
-                step3.setVisibility(View.VISIBLE);
-
-                btnBack.setVisibility(View.VISIBLE);
-
-                btnNext.setVisibility(View.GONE);
-
-                btnSubmit.setVisibility(View.VISIBLE);
-
-                break;
-        }
-
-    }
-
-    private void previousLayoutOut() {
-
-        switch (currentLayout) {
-
-            case 3:
-
-                step1.setVisibility(View.GONE);
-
-                step2.setVisibility(View.VISIBLE);
-
-                step3.setVisibility(View.GONE);
-
-                btnBack.setVisibility(View.VISIBLE);
-
-                btnNext.setVisibility(View.VISIBLE);
-
-                btnSubmit.setVisibility(View.GONE);
-
-
-                break;
-
-            case 2:
-
-                step1.setVisibility(View.VISIBLE);
-
-                step2.setVisibility(View.GONE);
-
-                scrollView.setVisibility(View.GONE);
-
-                step3.setVisibility(View.GONE);
-
-                btnBack.setVisibility(View.GONE);
-
-                btnNext.setVisibility(View.VISIBLE);
-
-                break;
-
-            case 1:
-
-                btnBack.setVisibility(View.GONE);
-
-                btnNext.setVisibility(View.VISIBLE);
-
-                break;
-        }
+        rbBlockRooms = findViewById(R.id.list_my_property_rbBlockRooms);
 
     }
 
@@ -829,6 +246,7 @@ public class ListPropertyActivity extends AppCompatActivity {
 //      Create a new Places client instance.
         PlacesClient placesClient = Places.createClient(this);
 
+        autocompleteSupportFragment.setCountry("ZA");
 
         autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ADDRESS, Place.Field.NAME,
                 Place.Field.LAT_LNG));
@@ -838,10 +256,8 @@ public class ListPropertyActivity extends AppCompatActivity {
             public void onPlaceSelected(Place place) {
 
                 if (place != null){
-                   // mLocation = place.getAddress();
-                   lat = place.getLatLng().latitude;
-                   lng = place.getLatLng().longitude;
-                   etPropertyLocation.setText(place.getAddress());
+
+                    etPropertyAddress.setText(place.getAddress());
                 }
 
             }
@@ -849,6 +265,8 @@ public class ListPropertyActivity extends AppCompatActivity {
             @Override
             public void onError(Status status) {
                 Log.e(TAG, "An error occurred: " + status.getStatusMessage());
+
+                showSnackBar(status.getStatusMessage());
             }
         });
 
@@ -872,156 +290,4 @@ public class ListPropertyActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-    private void uploadImageToFirebaseOne() {
-
-        LinearLayout linearLayout = findViewById(R.id.list_property_image1_progress);
-
-        linearLayout.setVisibility(View.VISIBLE);
-
-        final ProgressBar progressBar = findViewById(R.id.list_property_image1_progress_status_progress);
-
-        final TextView textView = findViewById(R.id.list_property_image1_progress_status);
-
-        final StorageReference fileReference =
-                mStorageReference.child(currentUserId + "_photo1.jpg");
-
-        UploadTask uploadTask = fileReference.putFile(mImageUri);
-
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                showSnackBar(e.getMessage());
-
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-
-                        strImageUrlOne = uri.toString();
-
-                        textView.setText("Image 1 Uploaded successfully");
-
-                        progressBar.setVisibility(View.GONE);
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        showSnackBar(e.getMessage());
-
-                    }
-                });
-
-            }
-        });
-
-    }
-
-    private void uploadImageToFirebaseTwo() {
-
-        LinearLayout linearLayout = findViewById(R.id.list_property_image2_progress);
-
-        final ProgressBar progressBar = findViewById(R.id.list_property_image2_progress_status_progress);
-
-        linearLayout.setVisibility(View.VISIBLE);
-
-        final TextView textView = findViewById(R.id.list_property_image2_progress_status);
-
-        final StorageReference fileReference =
-                mStorageReference.child(currentUserId + "_photo2.jpg");
-
-        UploadTask uploadTask = fileReference.putFile(mImageUri);
-
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                showSnackBar(e.getMessage());
-
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-
-                        strImageUrlTwo = uri.toString();
-
-                        textView.setText("Image 2 Uploaded successfully");
-
-                        progressBar.setVisibility(View.GONE);
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        showSnackBar(e.getMessage());
-
-                    }
-                });
-
-            }
-        });
-
-    }
-
-    private void uploadImageToFirebaseThree() {
-
-        LinearLayout linearLayout = findViewById(R.id.list_property_image3_progress);
-
-        final ProgressBar progressBar = findViewById(R.id.list_property_image3_progress_status_progress);
-
-        linearLayout.setVisibility(View.VISIBLE);
-
-        final TextView textView = findViewById(R.id.list_property_image3_progress_status);
-
-        final StorageReference fileReference =
-                mStorageReference.child(currentUserId + "_photo3.jpg");
-
-        UploadTask uploadTask = fileReference.putFile(mImageUri);
-
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                showSnackBar(e.getMessage());
-
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-
-                        strImageUrlThree = uri.toString();
-
-                        textView.setText("Image 3 Uploaded successfully");
-
-                        progressBar.setVisibility(View.GONE);
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        showSnackBar(e.getMessage());
-
-                    }
-                });
-
-            }
-        });
-
-    }
 }

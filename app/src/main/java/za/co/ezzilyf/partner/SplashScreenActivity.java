@@ -3,39 +3,52 @@ package za.co.ezzilyf.partner;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import za.co.ezzilyf.partner.activities.StudentHomeActivity;
-import za.co.ezzilyf.partner.activities.WelcomeActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_splash_screen);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        ImageView logo = findViewById(R.id.splash_ivLogo);
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.animation);
 
-        if (currentUser ==null) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
+        logo.startAnimation(animation);
 
-            startActivity(intent);
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-            finish();
-        }else {
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-            Intent intent = new Intent(this, MainActivity.class);
+                if (firebaseAuth.getCurrentUser() !=null){
 
-            startActivity(intent);
+                    Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
 
-            finish();
+                    startActivity(i);
 
-        }
+                    finish();
+                }else{
+
+                    Intent i = new Intent(SplashScreenActivity.this, AuthenticationActivity.class);
+
+                    startActivity(i);
+
+                    finish();
+                }
+            }
+        }, 5000);
 
     }
 }
