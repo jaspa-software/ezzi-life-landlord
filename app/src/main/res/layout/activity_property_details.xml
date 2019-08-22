@@ -324,6 +324,7 @@
 
                 <!-- rooms -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/property_details_roomsLayout"
                     android:layout_margin="10dp"
                     app:cardCornerRadius="20dp"
                     android:layout_width="match_parent"

@@ -28,7 +28,7 @@ public class MyRoomsAdapter  extends RecyclerView.Adapter<MyRoomsAdapter.MyViewH
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_room, viewGroup,
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_room, viewGroup,
                 false);
 
         return new MyViewHolder(view);
@@ -37,28 +37,11 @@ public class MyRoomsAdapter  extends RecyclerView.Adapter<MyRoomsAdapter.MyViewH
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
 
-        myViewHolder.roomId.setText(roomList.get(position).getRoomNumber() +
-                " - " + roomList.get(position).getTypeOfOccupants());
+        int space = roomList.get(position).getTotalTenants() - roomList.get(position).getCurrentTenants();
 
-        myViewHolder.status.setText(roomList.get(position).getOccupants() + " spaces " + roomList.get(position).getRoomStatus());
+        myViewHolder.status.setText(roomList.get(position).getCurrentTenants() + " tenants, "  + space  +" space(s) remaining");
 
-        myViewHolder.propertyName.setText(roomList.get(position).getPropertyName());
-
-        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(context, RoomDetailsActivity.class);
-
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                intent.putExtra("ROOM",roomList.get(position));
-
-                context.startActivity(intent);
-
-            }
-        });
-
+        myViewHolder.roomId.setText(roomList.get(position).getRoomNumber());
     }
 
     @Override
@@ -68,16 +51,14 @@ public class MyRoomsAdapter  extends RecyclerView.Adapter<MyRoomsAdapter.MyViewH
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView roomId, propertyName, status;
+        TextView roomId, status;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             roomId = itemView.findViewById(R.id.list_room_roomId);
 
-            status = itemView.findViewById(R.id.list_room_roomStatus);
-
-            propertyName = itemView.findViewById(R.id.list_room_propertyName);
+            status = itemView.findViewById(R.id.list_room_tenants);
 
         }
     }

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +67,8 @@ public class PropertyPhotosActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
+    private String propertyId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -75,6 +78,8 @@ public class PropertyPhotosActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.property_photos_recyclerView);
 
+        propertyId = getIntent().getStringExtra("PROPERTY_ID");
+
         textView = findViewById(R.id.property_photos_message);
 
         mStorageReference = FirebaseStorage.getInstance().getReference("propertyImages");
@@ -83,7 +88,12 @@ public class PropertyPhotosActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
 
-        getPropertyPhotos();
+        if (propertyId !=null) {
+
+            getPropertyPhotos();
+
+        }
+
 
         progressDialog = new ProgressDialog(this);
 
@@ -104,6 +114,17 @@ public class PropertyPhotosActivity extends AppCompatActivity {
 
             }
         });
+
+        ImageView btnClose = findViewById(R.id.property_photos_btnClose);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+            }
+        });
     }
 
     private void getPropertyPhotos() {
@@ -113,7 +134,7 @@ public class PropertyPhotosActivity extends AppCompatActivity {
         FirebaseFirestore photosRef = FirebaseFirestore.getInstance();
 
         photosRef.collection("photos")
-                .document("077990")
+                .document(propertyId)
                 .collection("propertyPhotos")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override

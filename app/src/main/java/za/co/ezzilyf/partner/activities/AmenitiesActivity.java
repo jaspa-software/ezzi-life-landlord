@@ -246,8 +246,6 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                         property = documentSnapshot.toObject(Property.class);
 
-                        Toast.makeText(AmenitiesActivity.this, "Updating ammenties", Toast.LENGTH_SHORT).show();
-
                         updateCheckBoxes();
                     }
                 });

@@ -98,8 +98,56 @@ public class PropertyDetailsActivity extends AppCompatActivity {
             checkCampuses();
 
             checkPhotos();
+
+            checkRooms();
         }
 
+    }
+
+    private void checkRooms() {
+
+        final FirebaseFirestore roomsRef = FirebaseFirestore.getInstance();
+
+        final TextView roomStatus = findViewById(R.id.property_details_tvRoomsStatus);
+
+        roomsRef.collection("rooms")
+                .document(propertyId)
+                .collection("propertyRooms")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                        if (e !=null) {
+
+                            roomStatus.setVisibility(View.VISIBLE);
+
+                            roomStatus.setText(e.getMessage());
+
+                            roomStatus.setTextColor(Color.RED);
+
+                            return;
+                        }
+
+                        if (queryDocumentSnapshots !=null && queryDocumentSnapshots.size() > 0) {
+
+                            roomStatus.setTextColor(Color.BLUE);
+
+                            roomStatus.setText(queryDocumentSnapshots.size() + " rooms added");
+
+                            roomStatus.setVisibility(View.VISIBLE);
+
+                        }else{
+
+                            roomStatus.setTextColor(Color.RED);
+
+                            roomStatus.setText("No rooms added");
+
+                            roomStatus.setVisibility(View.VISIBLE);
+
+                        }
+
+                    }
+                });
     }
 
     private void checkAmenities() {
@@ -355,7 +403,22 @@ public class PropertyDetailsActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(PropertyDetailsActivity.this, PropertyPhotosActivity.class);
 
-                intent.putExtra("PROPERTY",propertyId);
+                intent.putExtra("PROPERTY_ID",propertyId);
+
+                startActivity(intent);
+
+            }
+        });
+
+        CardView cvRooms = findViewById(R.id.property_details_roomsLayout);
+
+        cvRooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(PropertyDetailsActivity.this, RoomDetailsActivity.class);
+
+                intent.putExtra("PROPERTY_ID",propertyId);
 
                 startActivity(intent);
 

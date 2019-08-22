@@ -394,35 +394,7 @@ public class AddRoomActivity extends AppCompatActivity {
 
 
 
-        // setRoomRental
-        room.setMonthlyRental(Double.parseDouble(etMonthlyRental.getText().toString().trim()));
 
-        // setRoomImages
-        room.setRoomImageOne(strImageUrlOne);
-
-        room.setRoomImageTwo(strImageUrlTwo);
-
-        room.setRoomImageThree(strImageUrlThree);
-
-
-        // setRoomNumber
-        room.setRoomNumber(etRoomDescription.getText().toString().trim());
-
-        // setRoomType
-        room.setTypeOfOccupants(rbOccupants.getText().toString());
-
-        // setRoomOccupantsTtype
-        room.setRoomType(rbRoomType.getText().toString());
-
-        // setRoomTenants
-        room.setOccupants(Integer.parseInt(etOccupants.getText().toString().trim()));
-
-
-        // setPrpoertyName
-        room.setPropertyName(property.getPropertyName());
-
-        // setRoomStatus
-        room.setRoomStatus("Available");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

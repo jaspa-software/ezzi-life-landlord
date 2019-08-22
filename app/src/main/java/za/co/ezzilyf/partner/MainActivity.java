@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.addFragment(new MyPropertiesFragment(), "Properties");
 
-        adapter.addFragment(new MyRoomsFragment(), "Rooms");
+       // adapter.addFragment(new MyRoomsFragment(), "Rooms");
 
         adapter.addFragment(new MyTenantsFragment(), "Tenants");
 

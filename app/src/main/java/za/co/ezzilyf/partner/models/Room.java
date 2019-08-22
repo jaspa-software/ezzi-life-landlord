@@ -4,75 +4,25 @@ import java.io.Serializable;
 
 public class Room implements Serializable {
 
-    private String roomId;
-
-    private String roomType;
-
-    private int occupants;
+    private String propertyId;
 
     private String roomNumber;
 
-    private String propertyId;
+    private String roomId;
 
-    private String propertyOwnerUid;
+    private int totalTenants;
 
-    private double monthlyRental;
+    private int currentTenants;
 
-    private String roomStatus;
+    private double rental;
 
-    private String typeOfOccupants;
+    private String roomType;
 
-    private String roomImageOne;
+    private String tenantType;
 
-    private String roomImageTwo;
-
-    private String roomImageThree;
-
-    private String roomLocation;
-
-    private long lat;
-
-    private long lng;
-
-    private String roomName;
-
-    private String propertyName;
 
     public Room() {
 
-    }
-
-
-    public String getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public int getOccupants() {
-        return occupants;
-    }
-
-    public void setOccupants(int occupants) {
-        this.occupants = occupants;
-    }
-
-    public String getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
     }
 
     public String getPropertyId() {
@@ -83,99 +33,59 @@ public class Room implements Serializable {
         this.propertyId = propertyId;
     }
 
-    public double getMonthlyRental() {
-        return monthlyRental;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setMonthlyRental(double monthlyRental) {
-        this.monthlyRental = monthlyRental;
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
-    public String getRoomStatus() {
-        return roomStatus;
+    public String getRoomId() {
+        return roomId;
     }
 
-    public void setRoomStatus(String roomStatus) {
-        this.roomStatus = roomStatus;
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
-    public String getTypeOfOccupants() {
-        return typeOfOccupants;
+    public int getTotalTenants() {
+        return totalTenants;
     }
 
-    public void setTypeOfOccupants(String typeOfOccupants) {
-        this.typeOfOccupants = typeOfOccupants;
+    public void setTotalTenants(int totalTenants) {
+        this.totalTenants = totalTenants;
     }
 
-    public String getRoomImageOne() {
-        return roomImageOne;
+    public int getCurrentTenants() {
+        return currentTenants;
     }
 
-    public void setRoomImageOne(String roomImageOne) {
-        this.roomImageOne = roomImageOne;
+    public void setCurrentTenants(int currentTenants) {
+        this.currentTenants = currentTenants;
     }
 
-    public String getRoomImageTwo() {
-        return roomImageTwo;
+    public double getRental() {
+        return rental;
     }
 
-    public void setRoomImageTwo(String roomImageTwo) {
-        this.roomImageTwo = roomImageTwo;
+    public void setRental(double rental) {
+        this.rental = rental;
     }
 
-    public String getRoomImageThree() {
-        return roomImageThree;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setRoomImageThree(String roomImageThree) {
-        this.roomImageThree = roomImageThree;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public String getPropertyOwnerUid() {
-        return propertyOwnerUid;
+    public String getTenantType() {
+        return tenantType;
     }
 
-    public void setPropertyOwnerUid(String propertyOwnerUid) {
-        this.propertyOwnerUid = propertyOwnerUid;
-    }
-
-    public String getRoomLocation() {
-        return roomLocation;
-    }
-
-    public void setRoomLocation(String roomLocation) {
-        this.roomLocation = roomLocation;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
-
-    public String getPropertyName() {
-        return propertyName;
-    }
-
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
-    }
-
-    public long getLat() {
-        return lat;
-    }
-
-    public void setLat(long lat) {
-        this.lat = lat;
-    }
-
-    public long getLng() {
-        return lng;
-    }
-
-    public void setLng(long lng) {
-        this.lng = lng;
+    public void setTenantType(String tenantType) {
+        this.tenantType = tenantType;
     }
 }
