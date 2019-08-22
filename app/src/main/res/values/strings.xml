@@ -49,4 +49,12 @@
     <string name="facebook_application_id" translatable="false">645824585881703</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb645824585881703</string>
 
+    <string-array name="institutions">
+        <item>University of Johannesburg</item>
+        <item>University of Pretoria</item>
+        <item>Tshwane University of Technology</item>
+        <item>Richfield</item>
+        <item>Rosebank College</item>
+    </string-array>
+
 </resources>

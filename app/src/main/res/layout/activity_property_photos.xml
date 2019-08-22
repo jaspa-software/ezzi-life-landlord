@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".activities.PropertyPhotosActivity">
+
+
+    <ImageView
+        android:id="@+id/property_photos_btnClose"
+        android:src="@drawable/icon_close"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/property_photos_propertyName"
+        android:textAllCaps="true"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        fontPath="fonts/bold.ttf"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingPrefix" />
+
+    <Button
+        android:id="@+id/property_photos_btnUploadPhoto"
+        android:text="Upload Photo"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Property Photos"
+        android:textAllCaps="true"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        fontPath="fonts/bold.ttf"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingPrefix" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/property_photos_message"
+        android:text="No Photos Uploaded"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/property_photos_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

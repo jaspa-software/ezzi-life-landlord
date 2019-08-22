@@ -8,13 +8,6 @@
     android:background="@drawable/bottom_view_solid_border"
     android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/row_near_by_institution_logo"
-        android:src="@drawable/up_logo"
-        app:civ_border_color="#000"
-        app:civ_border_width="1dp"
-        android:layout_width="70dp"
-        android:layout_height="50dp" />
 
     <LinearLayout
         android:layout_weight="1"

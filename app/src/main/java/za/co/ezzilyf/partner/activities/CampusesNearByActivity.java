@@ -1,17 +1,29 @@
 package za.co.ezzilyf.partner.activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,6 +32,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -44,6 +57,8 @@ public class CampusesNearByActivity extends AppCompatActivity {
 
     private NearByAdapter adapter;
 
+    ArrayAdapter<String> campusAdapter;
+
     @Override
     protected void attachBaseContext(Context newBase) {
 
@@ -60,6 +75,17 @@ public class CampusesNearByActivity extends AppCompatActivity {
 
         property = (Property) getIntent().getSerializableExtra("PROPERTY");
 
+        ImageView btnClose = findViewById(R.id.campuses_near_by_btnClose);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+            }
+        });
+
         initViews();
 
         if (property !=null) {
@@ -71,6 +97,156 @@ public class CampusesNearByActivity extends AppCompatActivity {
             getInstitutions();
 
         }
+
+        Button btnAddCampus = findViewById(R.id.campuses_near_by_btnAdd);
+
+        btnAddCampus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showAddCampusDialog();
+
+            }
+        });
+
+    }
+
+
+    private void showAddCampusDialog() {
+
+        String [] institutions = getResources().getStringArray(R.array.institutions);
+
+        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+
+        //then we will inflate the custom alert dialog xml that we created
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_near_by, viewGroup, false);
+
+        final AutoCompleteTextView actCampus = dialogView.findViewById(R.id.dialog_near_by_actCampus);
+
+        final AutoCompleteTextView actInstitution = dialogView.findViewById(R.id.dialog_near_by_actInstitution);
+
+        ArrayAdapter<String> institutionsAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
+                institutions);;
+
+
+        final List<String> campusList =  new ArrayList<>();
+
+        actInstitution.setAdapter(institutionsAdapter);
+
+        actInstitution.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (!hasFocus){
+
+                    String institution = actInstitution.getText().toString().trim();
+
+                    FirebaseFirestore institutionCampusRef = FirebaseFirestore.getInstance();
+                    actCampus.setHint("Loading campuses....");
+
+                    institutionCampusRef.collection("campuses")
+                            .whereEqualTo("institution",institution)
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    if (!queryDocumentSnapshots.isEmpty()) {
+
+                                        for (QueryDocumentSnapshot doc: queryDocumentSnapshots){
+
+                                            campusList.add(doc.get("campusName").toString());
+
+                                            campusAdapter = new ArrayAdapter<>(CampusesNearByActivity.this,
+                                                    android.R.layout.simple_list_item_1,
+                                                    campusList);
+
+                                        }
+
+                                        actCampus.setAdapter(campusAdapter);
+                                        actCampus.setHint("Type name of campus");
+
+                                    }else{
+                                        actCampus.setHint("No campuses found");
+                                    }
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    actCampus.setError(e.getMessage());
+                                }
+                            });
+
+                }else {
+                    campusList.clear();
+                }
+            }
+        });
+
+        //Now we need an AlertDialog.Builder object
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, int which) {
+
+
+                HashMap<String, Object> institutionDetails = new HashMap<>();
+
+                institutionDetails.put("campus",actCampus.getText().toString().trim());
+
+                institutionDetails.put("institution", actInstitution.getText().toString().trim());
+
+                institutionDetails.put("propertyCoverImage", "https://images.prop24.com/199224006/Crop525x350");
+
+                institutionDetails.put("propertyId", property.getPropertyRefNumber());
+
+                institutionDetails.put("propertyName", property.getPropertyName());
+
+                FirebaseFirestore nearByRef = FirebaseFirestore.getInstance();
+
+                nearByRef.collection("nearByInstitutions")
+                        .add(institutionDetails)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+
+                                dialog.dismiss();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                dialog.dismiss();
+
+                                Toast.makeText(CampusesNearByActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+
+            }
+        });
+
+        //setting the view of the builder to our custom view that we already inflated
+        builder.setView(dialogView);
+
+        //finally creating the alert dialog and displaying it
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.setCanceledOnTouchOutside(false);
+
+        alertDialog.show();
+
     }
 
     private void getInstitutions() {

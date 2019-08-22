@@ -34,6 +34,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -93,6 +94,10 @@ public class PropertyDetailsActivity extends AppCompatActivity {
             initViews();
 
             checkAmenities();
+
+            checkCampuses();
+
+            checkPhotos();
         }
 
     }
@@ -160,6 +165,95 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                 });
     }
 
+    private void checkCampuses() {
+
+        final FirebaseFirestore amenitiesRef = FirebaseFirestore.getInstance();
+
+        final TextView insititutionStatus = findViewById(R.id.property_details_tvInstitutionsStatus);
+
+        amenitiesRef.collection("nearByInstitutions")
+                .whereEqualTo("propertyId", propertyId)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                        if (e !=null) {
+
+                            insititutionStatus.setVisibility(View.VISIBLE);
+
+                            insititutionStatus.setText(e.getMessage());
+
+                            insititutionStatus.setTextColor(Color.RED);
+
+                            return;
+                        }
+
+                        if (queryDocumentSnapshots !=null && queryDocumentSnapshots.size() > 0) {
+
+                            insititutionStatus.setVisibility(View.VISIBLE);
+
+                            insititutionStatus.setText(queryDocumentSnapshots.size() + " campuses added");
+
+                            insititutionStatus.setTextColor(Color.BLUE);
+
+                        }else{
+
+                            insititutionStatus.setTextColor(Color.RED);
+
+                            insititutionStatus.setText("No near by campuses added!");
+
+                            insititutionStatus.setVisibility(View.VISIBLE);
+
+                        }
+                    }
+                });
+    }
+
+    private void checkPhotos() {
+
+        final FirebaseFirestore photosRef = FirebaseFirestore.getInstance();
+
+        final TextView photosStatus = findViewById(R.id.property_details_tvPhotosStatus);
+
+        photosRef.collection("photos")
+                .document(propertyId)
+                .collection("propertyPhotos")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                        if (e !=null) {
+
+                            photosStatus.setVisibility(View.VISIBLE);
+
+                            photosStatus.setText(e.getMessage());
+
+                            photosStatus.setTextColor(Color.RED);
+
+                            return;
+                        }
+
+                        if (queryDocumentSnapshots !=null && queryDocumentSnapshots.size() > 0) {
+
+                            photosStatus.setTextColor(Color.BLUE);
+
+                            photosStatus.setText(queryDocumentSnapshots.size() + " photos uploaded");
+
+                            photosStatus.setVisibility(View.VISIBLE);
+
+                        }else{
+
+                            photosStatus.setTextColor(Color.RED);
+
+                            photosStatus.setText("No photos uploaded");
+
+                            photosStatus.setVisibility(View.VISIBLE);
+
+                        }
+
+                    }
+                });
+    }
 
     private void initViews() {
 
@@ -246,6 +340,22 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(PropertyDetailsActivity.this, CampusesNearByActivity.class);
 
                 intent.putExtra("PROPERTY",amenity);
+
+                startActivity(intent);
+
+            }
+        });
+
+
+        CardView cvPhotos = findViewById(R.id.property_details_photosLayout);
+
+        cvPhotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(PropertyDetailsActivity.this, PropertyPhotosActivity.class);
+
+                intent.putExtra("PROPERTY",propertyId);
 
                 startActivity(intent);
 
