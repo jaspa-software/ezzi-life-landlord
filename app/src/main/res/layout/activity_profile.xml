@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/profile_ivClose"
+        android:layout_margin="10dp"
+        android:src="@drawable/icon_close"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_profilePic"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/com_facebook_profile_picture_blank_square"
+        android:layout_margin="15dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/colorPrimaryDark"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profile_etFullNames"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Full Names" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profile_etEmail"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profile_etContactNumber"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="150dp"
+            android:maxLength="12"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Cell Number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/profile_btnUpdate"
+        android:background="@drawable/round_corner_button_border_only"
+        android:text="Update"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
