@@ -33,6 +33,7 @@ import java.util.HashMap;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import za.co.ezzilyf.partner.activities.HelpActivity;
 import za.co.ezzilyf.partner.adapters.ViewPagerAdapter;
+import za.co.ezzilyf.partner.fragments.AppointmentsFragment;
 import za.co.ezzilyf.partner.fragments.MyPropertiesFragment;
 import za.co.ezzilyf.partner.fragments.MyRoomsFragment;
 import za.co.ezzilyf.partner.fragments.MyTenantsFragment;
@@ -404,9 +405,9 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.addFragment(new MyPropertiesFragment(), "Residences");
 
-       // adapter.addFragment(new MyRoomsFragment(), "Rooms");
-
         adapter.addFragment(new MyTenantsFragment(), "Tenants");
+
+        adapter.addFragment(new AppointmentsFragment(), "Appointments");
 
         viewPager.setAdapter(adapter);
     }
