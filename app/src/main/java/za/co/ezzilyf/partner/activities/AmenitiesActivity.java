@@ -75,11 +75,11 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                 if (isChecked) {
 
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wifi","Yes");
                 }else{
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wifi","No");
                 }
@@ -94,11 +94,11 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                 if (isChecked) {
 
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("studyArea","Yes");
                 }else{
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("studyArea","No");
                 }
@@ -114,11 +114,11 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                 if (isChecked) {
 
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wardrobes","Yes");
                 }else{
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wardrobes","No");
                 }
@@ -134,11 +134,11 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                 if (isChecked) {
 
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("parking","Yes");
                 }else{
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("parking","No");
                 }
@@ -154,11 +154,11 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                 if (isChecked) {
 
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("cookingArea","Yes");
                 }else{
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("cookingArea","No");
                 }
@@ -174,11 +174,11 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                 if (isChecked) {
 
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("lounge","Yes");
                 }else{
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("lounge","No");
                 }
@@ -194,11 +194,11 @@ public class AmenitiesActivity extends AppCompatActivity {
 
                 if (isChecked) {
 
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("laundry","Yes");
                 }else{
-                    firebaseFirestore.collection("properties")
+                    firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("laundry","No");
                 }
@@ -230,7 +230,7 @@ public class AmenitiesActivity extends AppCompatActivity {
         FirebaseFirestore amenitiesRef = FirebaseFirestore.getInstance();
 
 
-        amenitiesRef.collection("properties")
+        amenitiesRef.collection("residences")
                 .document(propertyId)
                 .get()
                 .addOnFailureListener(new OnFailureListener() {

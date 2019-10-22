@@ -137,8 +137,8 @@ public class MyPropertiesFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("properties")
-                .whereEqualTo("properyOwnerUid", user.getUid())
+        db.collection("residences")
+                .whereEqualTo("propertyOwnerUid", user.getUid())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -212,9 +212,9 @@ public class MyPropertiesFragment extends Fragment {
 
                             progressBar.setVisibility(View.GONE);
 
-                            textView.setText("No properties listed");
+                            textView.setText("No residences listed");
 
-                            textView2.setText("When you have approved properties, you'll see them listed here.");
+                            textView2.setText("When you have approved residence, you'll see them listed here.");
 
                             textView.setVisibility(View.VISIBLE);
 

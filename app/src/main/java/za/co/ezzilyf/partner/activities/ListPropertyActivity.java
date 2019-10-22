@@ -99,6 +99,16 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         initGooglePlaces();
 
+        ImageView closeButton = findViewById(R.id.list_my_property_ivClose);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
+
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         btnSubmit = findViewById(R.id.list_my_property_btnSubmit);
@@ -169,11 +179,11 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         property.put("propertyType",propertyType);
 
-        property.put("properyAddress",etPropertyAddress.getText().toString());
+        property.put("propertyAddress",etPropertyAddress.getText().toString());
 
         property.put("propertyOwnerName",user.getDisplayName());
 
-        property.put("properyOwnerUid",user.getUid());
+        property.put("propertyOwnerUid",user.getUid());
 
         // disable button
         btnSubmit.setEnabled(false);
@@ -184,7 +194,7 @@ public class ListPropertyActivity extends AppCompatActivity {
 
         FirebaseFirestore propertyRef = FirebaseFirestore.getInstance();
 
-        propertyRef.collection("properties")
+        propertyRef.collection("residences")
                 .document(propertyRefNumber.substring(propertyRefNumber.length() - 6))
                 .set(property)
                 .addOnFailureListener(new OnFailureListener() {

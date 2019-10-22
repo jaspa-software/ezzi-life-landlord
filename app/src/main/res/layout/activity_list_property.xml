@@ -34,7 +34,7 @@
                 />
 
             <TextView
-                android:text="Property Name"
+                android:text="Residence Name"
                 android:textSize="14sp"
                 fontPath="fonts/bold.ttf"
                 android:textAllCaps="true"
@@ -53,7 +53,7 @@
                 android:inputType="text" />
 
             <TextView
-                android:text="Property Type"
+                android:text="Residence Type"
                 android:textSize="14sp"
                 fontPath="fonts/bold.ttf"
                 android:textAllCaps="true"

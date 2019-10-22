@@ -325,7 +325,7 @@ public class PropertyPhotosActivity extends AppCompatActivity {
         FirebaseFirestore photosRef = FirebaseFirestore.getInstance();
 
         photosRef.collection("photos")
-                .document("077990")
+                .document(propertyId)
                 .collection("propertyPhotos")
                 .add(photo)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

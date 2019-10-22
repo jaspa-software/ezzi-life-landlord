@@ -156,7 +156,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
 
         final TextView amenitiesStatus = findViewById(R.id.property_details_tvAmenitiesStatus);
 
-        amenitiesRef.collection("properties")
+        amenitiesRef.collection("residences")
                 .document(propertyId)
                 .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
@@ -317,7 +317,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
 
         FirebaseFirestore propertyRef = FirebaseFirestore.getInstance();
 
-        propertyRef.collection("properties")
+        propertyRef.collection("residences")
                 .document(propertyId)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
