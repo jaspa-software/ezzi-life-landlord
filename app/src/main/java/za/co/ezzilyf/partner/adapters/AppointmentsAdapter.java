@@ -36,7 +36,27 @@ public class AppointmentsAdapter  extends RecyclerView.Adapter<AppointmentsAdapt
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
 
+        myViewHolder.residence.setText(appointmentList.get(position).getPropertyRef());
 
+        myViewHolder.date.setText(appointmentList.get(position).getDate());
+
+        myViewHolder.inspector.setText(appointmentList.get(position).getInspectorName());
+
+        myViewHolder.comment.setText(appointmentList.get(position).getMessage());
+
+        myViewHolder.reschedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        myViewHolder.confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
