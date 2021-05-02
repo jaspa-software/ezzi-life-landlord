@@ -199,11 +199,6 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView tvFullNames = dialogView.findViewById(R.id.dialog_create_profile_etFullNames);
 
-        final TextView tvIdNumber = dialogView.findViewById(R.id.dialog_create_profile_etIdNumber);
-
-        final TextView tvAddress = dialogView.findViewById(R.id.dialog_create_profile_etAddress);
-
-        final TextView tvNationality = dialogView.findViewById(R.id.dialog_create_profile_etNationality);
 
         final TextView tvContactNumber = dialogView.findViewById(R.id.dialog_create_profile_etContactNumber);
 
@@ -236,25 +231,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                if (TextUtils.isEmpty(tvIdNumber.getText())) {
 
-                    tvIdNumber.setText("ID Number is requires");
-
-                    tvIdNumber.requestFocus();
-
-                    return;
-
-                }
-
-                if (TextUtils.isEmpty(tvAddress.getText())) {
-
-                    tvAddress.setText("Address is requires");
-
-                    tvAddress.requestFocus();
-
-                    return;
-
-                }
 
                 if (TextUtils.isEmpty(tvContactNumber.getText())) {
 
@@ -266,15 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                if (TextUtils.isEmpty(tvNationality.getText())) {
 
-                    tvNationality.setText("Nationality is requires");
-
-                    tvNationality.requestFocus();
-
-                    return;
-
-                }
 
                 btnCreate.setEnabled(false);
 
@@ -285,13 +254,8 @@ public class MainActivity extends AppCompatActivity {
 
                 profileDetails.put("fullNames", tvFullNames.getText().toString());
 
-                profileDetails.put("idNumber", tvIdNumber.getText().toString());
-
-                profileDetails.put("address", tvAddress.getText().toString());
 
                 profileDetails.put("contactNumber", tvContactNumber.getText().toString());
-
-                profileDetails.put("nationality", tvNationality.getText().toString());
 
                 // save details to firebase
                 FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();

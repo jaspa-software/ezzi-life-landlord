@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:padding="15dp"
     tools:context=".activities.PropertyPhotosActivity">
 
-
-    <ImageView
-        android:id="@+id/property_photos_btnClose"
-        android:src="@drawable/icon_close"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+    <include
+        android:id="@+id/property_photos_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/property_photos_propertyName"
@@ -22,7 +20,6 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
-        fontPath="fonts/bold.ttf"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         tools:ignore="MissingPrefix" />

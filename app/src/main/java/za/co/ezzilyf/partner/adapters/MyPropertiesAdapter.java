@@ -73,7 +73,6 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
         myViewHolder.location.setText(propertyList.get(position).getProperyAddress());
 
-        myViewHolder.status.setText(propertyList.get(position).getPropertyStatus());
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,14 +97,13 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name,location, status;
+        TextView name,location;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             location = itemView.findViewById(R.id.list_my_property_tvLocation);
 
-            status = itemView.findViewById(R.id.list_my_property_tvStatus);
 
             name = itemView.findViewById(R.id.list_my_property_tvName);
 

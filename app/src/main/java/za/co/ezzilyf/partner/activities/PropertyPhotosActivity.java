@@ -2,6 +2,7 @@ package za.co.ezzilyf.partner.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,6 +77,20 @@ public class PropertyPhotosActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_property_photos);
 
+        Toolbar toolbar = findViewById(R.id.property_photos_toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         recyclerView = findViewById(R.id.property_photos_recyclerView);
 
         propertyId = getIntent().getStringExtra("PROPERTY_ID");
@@ -115,16 +130,6 @@ public class PropertyPhotosActivity extends AppCompatActivity {
             }
         });
 
-        ImageView btnClose = findViewById(R.id.property_photos_btnClose);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                finish();
-
-            }
-        });
     }
 
     private void getPropertyPhotos() {
@@ -237,9 +242,8 @@ public class PropertyPhotosActivity extends AppCompatActivity {
     private void pickImageFromGallery() {
 
         CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(4,3)
-                .setMinCropResultSize(400,400)
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setAspectRatio(4,3)
                 .start(this);
     }
 

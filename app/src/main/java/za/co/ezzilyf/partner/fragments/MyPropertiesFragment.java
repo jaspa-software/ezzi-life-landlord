@@ -119,16 +119,6 @@ public class MyPropertiesFragment extends Fragment {
 
             getMyProperties();
 
-            FloatingActionButton fabAddProperty = getActivity().findViewById(R.id.my_properties_fabAddProperty);
-            fabAddProperty.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent intent = new Intent(getActivity(), ListPropertyActivity.class);
-
-                    startActivity(intent);
-                }
-            });
         }
 
 

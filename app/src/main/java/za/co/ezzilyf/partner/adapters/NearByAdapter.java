@@ -49,7 +49,9 @@ public class NearByAdapter extends RecyclerView.Adapter<NearByAdapter.MyViewHold
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "Functionality not implemented yet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Campus Removed", Toast.LENGTH_SHORT).show();
+
+                nearByList.remove(position);
 
             }
         });

@@ -2,6 +2,7 @@ package za.co.ezzilyf.partner.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -43,6 +44,19 @@ public class AmenitiesActivity extends AppCompatActivity {
 
         rootLayout = findViewById(R.id.amenities_rootLayout);
 
+        Toolbar toolbar = findViewById(R.id.ammenities_toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         propertyId = getIntent().getStringExtra("PROPERTY_ID");
 
         if (propertyId !=null) {
@@ -54,16 +68,6 @@ public class AmenitiesActivity extends AppCompatActivity {
             setListeners();
         }
 
-        ImageView btnCloseButton = findViewById(R.id.amenities_btnClose);
-
-        btnCloseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                finish();
-
-            }
-        });
     }
 
     private void setListeners() {
@@ -78,10 +82,12 @@ public class AmenitiesActivity extends AppCompatActivity {
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wifi","Yes");
+                    Toast.makeText(AmenitiesActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wifi","No");
+                    Toast.makeText(AmenitiesActivity.this, "Removed successfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -97,10 +103,12 @@ public class AmenitiesActivity extends AppCompatActivity {
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("studyArea","Yes");
+                    Toast.makeText(AmenitiesActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("studyArea","No");
+                    Toast.makeText(AmenitiesActivity.this, "Removed successfully", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -117,10 +125,12 @@ public class AmenitiesActivity extends AppCompatActivity {
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wardrobes","Yes");
+                    Toast.makeText(AmenitiesActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("wardrobes","No");
+                    Toast.makeText(AmenitiesActivity.this, "Removed successfully", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -137,10 +147,12 @@ public class AmenitiesActivity extends AppCompatActivity {
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("parking","Yes");
+                    Toast.makeText(AmenitiesActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("parking","No");
+                    Toast.makeText(AmenitiesActivity.this, "Removed successfully", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -157,10 +169,12 @@ public class AmenitiesActivity extends AppCompatActivity {
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("cookingArea","Yes");
+                    Toast.makeText(AmenitiesActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("cookingArea","No");
+                    Toast.makeText(AmenitiesActivity.this, "Removed successfully", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -177,10 +191,12 @@ public class AmenitiesActivity extends AppCompatActivity {
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("lounge","Yes");
+                    Toast.makeText(AmenitiesActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("lounge","No");
+                    Toast.makeText(AmenitiesActivity.this, "Removed successfully", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -197,10 +213,12 @@ public class AmenitiesActivity extends AppCompatActivity {
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("laundry","Yes");
+                    Toast.makeText(AmenitiesActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     firebaseFirestore.collection("residences")
                             .document(propertyId)
                             .update("laundry","No");
+                    Toast.makeText(AmenitiesActivity.this, "Removed successfully", Toast.LENGTH_SHORT).show();
                 }
 
             }

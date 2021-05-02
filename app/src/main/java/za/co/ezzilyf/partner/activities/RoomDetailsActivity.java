@@ -77,6 +77,19 @@ public class RoomDetailsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_room_details);
 
+        Toolbar toolbar = findViewById(R.id.property_rooms_toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         propertyId = getIntent().getStringExtra("PROPERTY_ID");
 
         recyclerView = findViewById(R.id.room_details_recyclerView);
@@ -95,16 +108,6 @@ public class RoomDetailsActivity extends AppCompatActivity {
 
         }
 
-        ImageView btnClose = findViewById(R.id.room_details_btnClose);
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                finish();
-
-            }
-        });
 
         Button btnAddRoom = findViewById(R.id.room_details_btnAddRoom);
 

@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:orientation="vertical"
     tools:context=".activities.CampusesNearByActivity">
 
-    <ImageView
-        android:id="@+id/campuses_near_by_btnClose"
-        android:src="@drawable/icon_close"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+    <include
+        android:id="@+id/campuses_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/campuses_near_by_tvPropertyName"

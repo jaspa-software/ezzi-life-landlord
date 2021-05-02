@@ -41,35 +41,6 @@
 
 
         <TextView
-            android:text="ID NUMBER"
-            android:layout_marginTop="15dp"
-            android:textSize="14sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/dialog_create_profile_etIdNumber"
-            android:maxLength="15"
-            android:inputType="number"
-            android:textSize="18sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-        <TextView
-            android:text="ADDRESS"
-            android:layout_marginTop="15dp"
-            android:textSize="14sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/dialog_create_profile_etAddress"
-            android:maxLength="50"
-            android:inputType="textPostalAddress"
-            android:textSize="18sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
             android:text="CONTACT NUMBER"
             android:layout_marginTop="15dp"
             android:textSize="14sp"
@@ -83,20 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
-        <TextView
-            android:text="NATIONALITY"
-            android:layout_marginTop="15dp"
-            android:textSize="14sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/dialog_create_profile_etNationality"
-            android:maxLength="20"
-            android:inputType="text"
-            android:textSize="18sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/dialog_create_profile_btnCreate"

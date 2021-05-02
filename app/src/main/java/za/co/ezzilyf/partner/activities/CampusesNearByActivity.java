@@ -3,6 +3,7 @@ package za.co.ezzilyf.partner.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,14 +76,16 @@ public class CampusesNearByActivity extends AppCompatActivity {
 
         property = (Property) getIntent().getSerializableExtra("PROPERTY");
 
-        ImageView btnClose = findViewById(R.id.campuses_near_by_btnClose);
+        Toolbar toolbar = findViewById(R.id.campuses_toolbar);
 
-        btnClose.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View view) {
                 finish();
-
             }
         });
 

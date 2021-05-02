@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:orientation="vertical"
     tools:context=".activities.RoomDetailsActivity">
 
-
-    <ImageView
-        android:id="@+id/room_details_btnClose"
-        android:src="@drawable/icon_close"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+    <include
+        android:id="@+id/property_rooms_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/room_details_propertyName"

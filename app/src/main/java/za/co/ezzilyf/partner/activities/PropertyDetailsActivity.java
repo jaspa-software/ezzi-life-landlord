@@ -186,9 +186,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                                         amenity.getLounge() == null ||
                                         amenity.getLaundry()== null) {
 
-                                    amenitiesStatus.setTextColor(Color.RED);
-
-                                    amenitiesStatus.setText("Property Amenities not added!");
+                                    amenitiesStatus.setText("Property Amenities");
 
                                     amenitiesStatus.setVisibility(View.VISIBLE);
 
@@ -205,9 +203,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                                 amenitiesStatus.setVisibility(View.VISIBLE);
                             }
 
-
                         }
-
 
                     }
                 });
